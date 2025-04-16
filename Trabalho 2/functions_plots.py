@@ -3,101 +3,103 @@ import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
 
 
-def plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list, filename='network_metrics.pdf'):
-    years = [i for i in range(2010, 2026)]
-    milestones = [2012, 2016, 2020, 2024]  # Anos marcantes
 
-    # Cria uma figura com 4 subplots
-    fig, axs = plt.subplots(4, 1, figsize=(10, 12))
-    fig.suptitle('Network Metrics Evolution (2010-2025)', fontsize=14, y=1.02)
+def plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list, filename='network_metrics.pdf'):
+    """
+    Plota a evolução de métricas de redes científicas de 2010 a 2025 e salva como PDF.
+
+    Parâmetros:
+    - n_d_list: Lista com os valores de densidade da rede.
+    - n_n_list: Lista com os números de nós.
+    - n_e_list: Lista com os números de arestas.
+    - a_d_list: Lista com os graus médios.
+    - filename: Nome do arquivo de saída em PDF.
+    """
+    years = list(range(2010, 2026))
+    milestones = [2012, 2016, 2020, 2024]
+    metrics = [
+        ("Number of Nodes", n_n_list),
+        ("Number of Edges", n_e_list),
+        ("Average Degree", a_d_list),
+        ("Network Density", n_d_list)
+    ]
+
+    # Configurações do gráfico
+    fig, axs = plt.subplots(len(metrics), 1, figsize=(10, 15))
+    #fig.suptitle('Network Metrics Evolution (2010–2025)', fontsize=16, y=1.02)
     fig.tight_layout(pad=4.0)
 
-    # Configurações comuns para as linhas verticais
     line_style = {'linestyle': ':', 'color': 'red', 'alpha': 0.7, 'linewidth': 2}
 
-    # Gráfico 1: Number of Nodes
-    axs[0].plot(years, n_n_list)
-    for year in milestones:
-        axs[0].axvline(x=year, **line_style)
-    axs[0].grid()
-    axs[0].set_xlabel("Years")
-    axs[0].set_ylabel("Number of Nodes")
+    for i, (label, values) in enumerate(metrics):
+        ax = axs[i]
+        ax.plot(years, values, marker='o', label=label)
+        ax.set_xlabel("Year")
+        ax.set_ylabel(label)
+        ax.grid(True)
+        for year in milestones:
+            ax.axvline(x=year, **line_style)
+        ax.legend()
 
-    # Gráfico 2: Number of Edges
-    axs[1].plot(years, n_e_list)
-    for year in milestones:
-        axs[1].axvline(x=year, **line_style)
-    axs[1].grid()
-    axs[1].set_xlabel("Years")
-    axs[1].set_ylabel("Number of Edges")
-
-    # Gráfico 3: Average Degree
-    axs[2].plot(years, a_d_list)
-    for year in milestones:
-        axs[2].axvline(x=year, **line_style)
-    axs[2].grid()
-    axs[2].set_xlabel("Years")
-    axs[2].set_ylabel("Average Degree")
-
-    # Gráfico 4: Network Density
-    axs[3].plot(years, n_d_list)
-    for year in milestones:
-        axs[3].axvline(x=year, **line_style)
-    axs[3].grid()
-    axs[3].set_xlabel("Years")
-    axs[3].set_ylabel("Network Density")
-
-    # Salva em PDF
+    # Salva o gráfico
     plt.savefig(filename, bbox_inches='tight', dpi=300)
     print(f"Gráficos salvos como {filename}")
-
     plt.show()
 
-def plot_degree_distribution(d_d_list):
-    """
-    Plots, displays and saves degree distribution histograms for each year's data as PDF files.
 
+
+
+
+def plot_degree_distribution_grouped(d_d_list):
+    """
+    Plots, displays and saves grouped degree distribution histograms (4 per PDF page),
+    each with a specific distinct color.
+    
     Parameters:
     d_d_list (list): List of dictionaries containing degree distributions for each year
     """
-    for i in range(len(d_d_list)):
-        data_dict = dict(d_d_list[i])
+    graphs_per_pdf = 4
+    num_graphs = len(d_d_list)
+    num_pdfs = (num_graphs + graphs_per_pdf - 1) // graphs_per_pdf
 
-        # Prepare data
-        values = list(data_dict.keys())
-        counts = list(data_dict.values())
+    # Lista de cores específicas
+    colors = ['skyblue', 'lightcoral', 'mediumseagreen', 'plum', 'gold', 'lightsalmon', 'deepskyblue', 'khaki']
 
-        # Create figure with larger size
-        plt.figure(figsize=(14, 7))
-        bars = plt.bar(values, counts, color='skyblue', edgecolor='navy', alpha=0.8, width=0.8)
+    for pdf_index in range(num_pdfs):
+        fig, axes = plt.subplots(2, 2, figsize=(16, 10))
+        axes = axes.flatten()
 
-        # Customize plot appearance
-        plt.title(f'Co-authorship Degree Distribution - 20{10+i}', fontsize=16, pad=20, fontweight='bold')
-        plt.xlabel('Number of co-authorships', fontsize=14, labelpad=10)
-        plt.ylabel('Frequency', fontsize=14, labelpad=10)
+        for i in range(graphs_per_pdf):
+            data_index = pdf_index * graphs_per_pdf + i
+            if data_index >= num_graphs:
+                axes[i].axis('off')
+                continue
 
-        # Grid and tick customization
-        plt.grid(axis='y', alpha=0.4, linestyle='--')
-        plt.xticks(fontsize=12, rotation=45)
-        plt.yticks(fontsize=12)
+            data_dict = dict(d_d_list[data_index])
+            values = list(data_dict.keys())
+            counts = list(data_dict.values())
 
-        # Adjust layout
+            # Cor específica para o gráfico atual, com fallback em loop se necessário
+            color = colors[data_index % len(colors)]
+
+            axes[i].bar(values, counts, color=color, edgecolor='black', alpha=0.85, width=0.8)
+            axes[i].set_title(f'Co-authorship Degree Distribution - 20{10 + data_index}', fontsize=14, fontweight='bold')
+            axes[i].set_xlabel('Number of co-authorships', fontsize=12)
+            axes[i].set_ylabel('Frequency', fontsize=12)
+            axes[i].grid(axis='y', alpha=0.4, linestyle='--')
+
+            for label in axes[i].get_xticklabels():
+                label.set_rotation(90)
+                label.set_ha('center')
+
         plt.tight_layout()
-
-        # Save as high-quality PDF
-        pdf_filename = f'degree_distribution_20{10+i}.pdf'
+        plt.show()  # Mostra o gráfico antes de salvar
+        pdf_filename = f'degree_distribution_group_{pdf_index + 1}.pdf'
         plt.savefig(pdf_filename, format='pdf', dpi=300, bbox_inches='tight')
-        print(f"Graph saved as {pdf_filename}")
+        print(f"PDF salvo: {pdf_filename}")
+        plt.close(fig)
 
-        # Display the plot
-        plt.show()
 
-        # Clear the figure for next iteration
-        plt.clf()
-        plt.close()
-
-# Example usage:
-# plot_degree_distribution(your_degree_distribution_list)
 
 
 def plot_ridgeline_chart(d_d_list):
