@@ -1,6 +1,6 @@
 ﻿
 <p align="center">
-  <img src="DCA.png" alt="Funções de Overlap-add e Overlap-save"/>
+  <img src="IMGs/DCA.png" alt="Funções de Overlap-add e Overlap-save"/>
 </p>
  
 <p align="center"><strong>UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE</strong></p>
@@ -72,7 +72,8 @@ O estudo buscou identificar tendências como o crescimento da rede, a diminuiç�
 #### 2.1.3 Exibição das Imagens e Explicações
 
 ##### **Imagem 1: 2010–2013**
-![2010-2013](./2010-2013.png)
+![2010-2013](IMGs/2010-2013.png)
+
 
 *Explicação:*  
 Nesta fase inicial, os gráficos demonstram os primeiros estágios de consolidação da rede. Com um número reduzido de vértices, a densidade apresenta valores relativamente altos e a distribuição do número de vizinhos mostra-se ainda homogênea, com indícios preliminares do surgimento de hubs. Essa fase é crucial para estabelecer as bases da rede e definir os padrões de conexão que serão expandidos nos anos seguintes.
@@ -80,7 +81,7 @@ Nesta fase inicial, os gráficos demonstram os primeiros estágios de consolida�
 ---
 
 ##### **Imagem 2: 2014–2017**
-![2014-2017](./2014-2017.png)
+![2014-2017](IMGs/2014-2017.png)
 
 *Explicação:*  
 No intervalo de 2014 a 2017, observa-se um crescimento acentuado no número de vértices e arestas. Apesar do aumento absoluto das conexões, a densidade vem caindo gradualmente, indicando que o crescimento dos nós supera o ritmo de formação de novas ligações. A distribuição do número de vizinhos começa a apresentar uma cauda longa, sinalizando a emergência dos primeiros hubs que se destacam na rede.
@@ -88,7 +89,7 @@ No intervalo de 2014 a 2017, observa-se um crescimento acentuado no número de v
 ---
 
 ##### **Imagem 3: 2018–2021**
-![2018-2021](./2018-2021.png)
+![2018-2021](IMGs/2018-2021.png)
 
 *Explicação:*  
 Durante o período de 2018 a 2021, a rede atinge uma fase de maturação. Os gráficos evidenciam a consolidação dos padrões de conectividade: enquanto o número de vértices e arestas continua crescendo, a densidade segue em declínio. A distribuição do número de vizinhos se acentua, reforçando a presença de hubs (nós com alto grau de conectividade) e demonstrando uma clara divisão entre nós com pouca e alta conexão.
@@ -96,7 +97,7 @@ Durante o período de 2018 a 2021, a rede atinge uma fase de maturação. Os gr�
 ---
 
 ##### **Imagem 4: 2022–2025**
-![2022-2025](./2022-2025.png)
+![2022-2025](IMGs/2022-2025.png)
 
 *Explicação:*  
 No estágio mais recente (2022–2025), a rede mostra um novo patamar de expansão. Embora o número de vértices e arestas continue aumentando, a densidade permanece baixa, indicando que a formação de novos nós não é acompanhada por um crescimento proporcional nas conexões. A distribuição do número de vizinhos evidencia uma consolidação ainda maior dos hubs, com a maioria dos nós apresentando conectividade modesta enquanto poucos concentraram um número elevado de ligações.
@@ -104,7 +105,7 @@ No estágio mais recente (2022–2025), a rede mostra um novo patamar de expans�
 ---
 
 ##### **Imagem Consolidada: Métricas Agregadas**
-![metrics](./metrics.png)
+![metrics](IMGs/metrics.png)
 
 *Explicação:*  
 Esta imagem agrega as métricas calculadas ao longo de todo o período (2010–2025), permitindo uma análise comparativa integrada. É possível visualizar a relação inversa entre o crescimento do número de vértices e a densidade da rede, bem como a evolução do número médio de vizinhos e a formação acentuada dos hubs. Essa visão global reforça os achados de que, com o aumento dos nós, as ligações se diluem em termos relativos, mesmo com o aumento absoluto das conexões.
