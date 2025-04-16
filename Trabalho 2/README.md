@@ -72,7 +72,7 @@ O estudo buscou identificar tendências como o crescimento da rede, a diminuiç�
 #### 2.1.3 Exibição das Imagens e Explicações
 
 ##### **Imagem 1: 2010–2013**
-![2010-2013](IMGs/Figure-01.png)
+![2010-2013](IMGs/Figure_1.png)
 
 
 *Explicação:*  
@@ -81,7 +81,7 @@ Nesta fase inicial, os gráficos demonstram os primeiros estágios de consolida�
 ---
 
 ##### **Imagem 2: 2014–2017**
-![2014-2017](IMGs/Figure-02.png)
+![2014-2017](IMGs/Figure_2.png)
 
 *Explicação:*  
 No intervalo de 2014 a 2017, observa-se um crescimento acentuado no número de vértices e arestas. Apesar do aumento absoluto das conexões, a densidade vem caindo gradualmente, indicando que o crescimento dos nós supera o ritmo de formação de novas ligações. A distribuição do número de vizinhos começa a apresentar uma cauda longa, sinalizando a emergência dos primeiros hubs que se destacam na rede.
@@ -89,7 +89,7 @@ No intervalo de 2014 a 2017, observa-se um crescimento acentuado no número de v
 ---
 
 ##### **Imagem 3: 2018–2021**
-![2018-2021](IMGs/Figure-03.png)
+![2018-2021](IMGs/Figure_3.png)
 
 *Explicação:*  
 Durante o período de 2018 a 2021, a rede atinge uma fase de maturação. Os gráficos evidenciam a consolidação dos padrões de conectividade: enquanto o número de vértices e arestas continua crescendo, a densidade segue em declínio. A distribuição do número de vizinhos se acentua, reforçando a presença de hubs (nós com alto grau de conectividade) e demonstrando uma clara divisão entre nós com pouca e alta conexão.
@@ -97,7 +97,7 @@ Durante o período de 2018 a 2021, a rede atinge uma fase de maturação. Os gr�
 ---
 
 ##### **Imagem 4: 2022–2025**
-![2022-2025](IMGs/Figure-04.png)
+![2022-2025](IMGs/Figure_4.png)
 
 *Explicação:*  
 No estágio mais recente (2022–2025), a rede mostra um novo patamar de expansão. Embora o número de vértices e arestas continue aumentando, a densidade permanece baixa, indicando que a formação de novos nós não é acompanhada por um crescimento proporcional nas conexões. A distribuição do número de vizinhos evidencia uma consolidação ainda maior dos hubs, com a maioria dos nós apresentando conectividade modesta enquanto poucos concentraram um número elevado de ligações.
