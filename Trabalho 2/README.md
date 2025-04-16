@@ -37,12 +37,7 @@ Para responder a essas questões, utilizaremos a biblioteca NetworkX em Python p
 
 ### **2. DESENVOLVIMENTO**
 
-
 #### **2.1 REQUISITO 1**
-
-## 2. DESENVOLVIMENTO
-
-### 2.1 REQUISITO 1
 
 Esta seção documenta a análise evolutiva da rede de 2010 a 2025, utilizando métricas fundamentais que evidenciam a dinâmica estrutural e comportamental do grafo. A seguir, são apresentados os gráficos (imagens) gerados para intervalos temporais distintos, acompanhados das explicações e principais achados decorrentes da análise.
 
