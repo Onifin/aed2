@@ -112,6 +112,25 @@ Esta imagem agrega as métricas calculadas ao longo de todo o período (2010–2
 
 ---
 
+##### **Distribuição de Frequências por Ano**
+![metrics](IMGs/distribuicao_frequencias.png)
+
+*Explicação:*
+Distribuição de Frequências por Ano
+A imagem a seguir representa a distribuição de frequências de um determinado valor ao longo dos anos, indo de 2010 até 2025. Cada linha horizontal corresponde a um ano, com a distribuição dos valores desenhada como uma curva de densidade empilhada (também chamada de gráfico ridge ou joyplot). A coloração das curvas segue um gradiente baseado na média de arestas daquele ano, conforme a escala de cores à direita.
+
+Essa visualização facilita a identificação de padrões e tendências temporais, como por exemplo:
+
+- A concentração de valores mais baixos entre os anos de 2010 a 2013.
+
+- Uma distribuição mais dispersa nos anos mais recentes, especialmente de 2020 em diante.
+
+- A presença de médias de arestas mais elevadas em anos como 2019, 2023 e 2024, evidenciada pelas cores mais próximas do amarelo na escala viridis.
+
+Essa abordagem é útil para analisar a evolução do comportamento dos dados ao longo do tempo, destacando anos com maior variação ou densidade em determinados intervalos de valores.
+
+---
+
 #### 2.1.4 Principais Achados e Dificuldades
 
 - **Crescimento e Expansão:**  

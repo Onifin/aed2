@@ -1,6 +1,15 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 from scipy.stats import gaussian_kde
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+from matplotlib.collections import PolyCollection
+import seaborn as sns
 
 
 
@@ -45,8 +54,6 @@ def plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list, filename='network_metri
     plt.savefig(filename, bbox_inches='tight', dpi=300)
     print(f"Gráficos salvos como {filename}")
     plt.show()
-
-
 
 
 
@@ -101,71 +108,120 @@ def plot_degree_distribution_grouped(d_d_list):
 
 
 
-
-def plot_ridgeline_chart(d_d_list):
+def plot_ridgeline(d_d_list, n_e_list, years=None, figsize=(12, 8),
+                   overlap=0.7, palette="viridis", alpha=0.8,
+                   title="Distribuição de Frequências por Ano",
+                   xlabel="Valor", ylabel="Ano"):
     """
-    Creates and saves a Ridgeline Chart with probability density functions (KDE) for each year's data.
+    Plota um gráfico ridgeline (joyplot) para dados de frequência por ano,
+    colorindo cada curva de acordo com a média de arestas de cada ano.
 
-    Parameters:
-    d_d_list (list): List of dictionaries containing degree distributions for each year
+    Parâmetros:
+    - d_d_list: lista de dicionários de frequências. Cada dicionário corresponde a um ano,
+                e deve ter o formato {valor: frequência, ...}
+    - n_e_list: lista (ou iterável) com a média de arestas para cada ano,
+                na mesma ordem de d_d_list
+    - years: lista de anos correspondentes aos dados (default: 2010 a 2025)
+    - figsize: tamanho da figura
+    - overlap: grau de sobreposição entre as curvas (0 a 1)
+    - palette: paleta de cores para o colormap
+    - alpha: transparência das curvas
+    - title: título do gráfico
+    - xlabel: legenda do eixo x
+    - ylabel: legenda do eixo y
     """
-    plt.figure(figsize=(12, 8))
+    if years is None:
+        years = list(range(2010, 2026))
 
-    # Create a list of years for labeling
-    years = [f"20{10+i}" for i in range(len(d_d_list))]
+    if len(d_d_list) != len(n_e_list) or len(d_d_list) != len(years):
+        raise ValueError("Os comprimentos de d_d_list, n_e_list e years devem ser iguais")
 
-    # Create a grid for KDE evaluation
-    x_grid = np.linspace(0, max(max(d.keys()) for d in d_d_list if d) + 5, 500)
+    # Converter dicionários em DataFrames para facilitar o processamento
+    dfs = []
+    for i, d in enumerate(d_d_list):
+        if d:  # Verificar se o dicionário não está vazio
+            df = pd.DataFrame(list(d.items()), columns=['valor', 'frequencia'])
+            df['ano'] = years[i]
+            df['media_arestas'] = n_e_list[i]
+            dfs.append(df)
 
-    # Create a list to store all KDEs
-    kde_results = []
+    if not dfs:
+        raise ValueError("Nenhum dado válido encontrado para plotar")
 
-    # Calculate KDE for each year
-    for i, data_dict in enumerate(d_d_list):
-        if not data_dict:
-            continue
+    # Combinar todos os DataFrames
+    data = pd.concat(dfs, ignore_index=True)
 
-        # Expand the data points according to their counts
-        values = []
-        for val, count in data_dict.items():
-            values.extend([val] * count)
+    # Encontrar o valor mínimo e máximo para todos os dados
+    x_min = data['valor'].min()
+    x_max = data['valor'].max()
 
-        # Calculate KDE
-        kde = gaussian_kde(values)
-        kde_results.append(kde(x_grid))
+    # Criar uma figura
+    fig, ax = plt.subplots(figsize=figsize, facecolor='white')
 
-    # Create Ridgeline plot
-    n_years = len(kde_results)
-    colors = plt.cm.viridis(np.linspace(0.2, 0.8, n_years))
+    # Normalizar os valores de média de arestas para colormap
+    norm = mcolors.Normalize(vmin=min(n_e_list), vmax=max(n_e_list))
+    cmap = plt.get_cmap(palette)
 
-    fig, axes = plt.subplots(n_years, 1, figsize=(10, 0.8 * n_years),
-                           sharex=True, sharey=True)
-    plt.subplots_adjust(hspace=-0.5)
+    # Plotar cada densidade
+    for i, year in enumerate(years):
+        year_data = data[data['ano'] == year]
 
-    for i, (ax, year, color, kde) in enumerate(zip(axes, years, colors, kde_results)):
-        ax.fill_between(x_grid, kde, color=color, alpha=0.6)
-        ax.plot(x_grid, kde, color='black', alpha=0.6, linewidth=0.5)
+        if not year_data.empty:
+            # Extrair dados do DataFrame
+            x_values = year_data['valor'].values
+            y_values = year_data['frequencia'].values
 
-        # Set year label
-        ax.text(0.95, 0.8, year, transform=ax.transAxes,
-                ha='right', va='center', fontsize=10,
-                bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'))
+            # Ordenar os valores
+            idx = np.argsort(x_values)
+            x_values = x_values[idx]
+            y_values = y_values[idx]
 
-        # Remove borders and ticks
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['bottom'].set_visible(False)
-        ax.spines['left'].set_visible(False)
-        ax.tick_params(axis='both', which='both', length=0)
-        ax.set_yticks([])
+            # Adicionar pontos de início e fim para completar o polígono
+            x = np.append(np.append([x_min], x_values), [x_max])
+            y = np.append(np.append([0], y_values), [0])
 
-    # Set common labels
-    fig.text(0.5, 0.02, 'Number of co-authorships', ha='center', fontsize=12)
-    fig.text(0.02, 0.5, 'Year', va='center', rotation='vertical', fontsize=12)
-    fig.suptitle('Evolution of Co-authorship Degree Distribution', y=0.95, fontsize=14)
+            # Normalizar a altura máxima
+            y = y / y.max() if y.max() > 0 else y
 
-    # Save as PDF
-    plt.savefig('ridgeline_chart.pdf', format='pdf', dpi=300, bbox_inches='tight')
-    print("Ridgeline chart saved as 'ridgeline_chart.pdf'")
+            # Posição vertical da curva
+            offset = i * (1.0 - overlap)
 
-    plt.show()
+            # Criar pontos xy para o polígono
+            xy = np.column_stack([x, offset + y])
+
+            # Cor baseada na média de arestas
+            color = cmap(norm(n_e_list[i]))
+
+            # Adicionar polígono
+            poly = plt.fill(xy[:, 0], xy[:, 1], alpha=alpha, color=color, edgecolor='k', linewidth=0.5)
+
+            # Adicionar linha horizontal para indicar a base de cada curva
+            plt.axhline(y=offset, color='gray', linestyle='--', alpha=0.3)
+
+    # Configurar eixos e legendas
+    ax.set_yticks([i * (1.0 - overlap) for i in range(len(years))])
+    ax.set_yticklabels(years)
+
+    # Adicionar colorbar
+    sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
+    sm.set_array([])
+    cbar = plt.colorbar(sm, ax=ax, label='Média de Arestas')
+
+    # Configurar títulos e limites
+    plt.title(title, fontsize=14)
+    plt.xlabel(xlabel, fontsize=12)
+    plt.ylabel(ylabel, fontsize=12)
+    plt.xlim(x_min, 50)
+    plt.ylim(-0.5, len(years) * (1.0 - overlap) + 0.5)
+
+    plt.tight_layout()
+
+    pdf_filename = 'distribuicao_frequencias.pdf'
+
+    plt.savefig(pdf_filename, format='pdf', dpi=300, bbox_inches='tight')
+    print(f"PDF salvo: {pdf_filename}")
+
+    plt.show()  # Adiciona esta linha para exibir o gráfico na aplicação
+    plt.close(fig)
+
+    return fig, ax
