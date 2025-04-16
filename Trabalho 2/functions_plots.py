@@ -56,24 +56,16 @@ def plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list, filename='network_metri
     plt.show()
 
 
-
 def plot_degree_distribution_grouped(d_d_list):
-    """
-    Plots, displays and saves grouped degree distribution histograms (4 per PDF page),
-    each with a specific distinct color.
-    
-    Parameters:
-    d_d_list (list): List of dictionaries containing degree distributions for each year
-    """
     graphs_per_pdf = 4
     num_graphs = len(d_d_list)
     num_pdfs = (num_graphs + graphs_per_pdf - 1) // graphs_per_pdf
 
-    # Lista de cores específicas
-    colors = ['skyblue', 'lightcoral', 'mediumseagreen', 'plum', 'gold', 'lightsalmon', 'deepskyblue', 'khaki']
+    colors = ['red', 'green', 'yellow', 'blue', 'brown', 'cyan', 'pink', 'purple']
 
     for pdf_index in range(num_pdfs):
-        fig, axes = plt.subplots(2, 2, figsize=(16, 10))
+        # Aqui usamos constrained_layout para que o matplotlib ajuste os espaçamentos
+        fig, axes = plt.subplots(2, 2, figsize=(16, 10), constrained_layout=True)
         axes = axes.flatten()
 
         for i in range(graphs_per_pdf):
@@ -86,12 +78,12 @@ def plot_degree_distribution_grouped(d_d_list):
             values = list(data_dict.keys())
             counts = list(data_dict.values())
 
-            # Cor específica para o gráfico atual, com fallback em loop se necessário
             color = colors[data_index % len(colors)]
 
             axes[i].bar(values, counts, color=color, edgecolor='black', alpha=0.85, width=0.8)
-            axes[i].set_title(f'Co-authorship Degree Distribution - 20{10 + data_index}', fontsize=14, fontweight='bold')
-            axes[i].set_xlabel('Number of co-authorships', fontsize=12)
+            axes[i].set_title(f'Co-authorship Degree Distribution - 20{10 + data_index}', 
+                              fontsize=14, fontweight='bold')
+            axes[i].set_xlabel('Number of co-authorships', fontsize=12, labelpad=10)
             axes[i].set_ylabel('Frequency', fontsize=12)
             axes[i].grid(axis='y', alpha=0.4, linestyle='--')
 
@@ -99,13 +91,12 @@ def plot_degree_distribution_grouped(d_d_list):
                 label.set_rotation(90)
                 label.set_ha('center')
 
-        plt.tight_layout()
-        plt.show()  # Mostra o gráfico antes de salvar
+        # Não é necessário chamar subplots_adjust ou tight_layout, o constrained_layout já cuida disso.
+        plt.show()
         pdf_filename = f'degree_distribution_group_{pdf_index + 1}.pdf'
         plt.savefig(pdf_filename, format='pdf', dpi=300, bbox_inches='tight')
         print(f"PDF salvo: {pdf_filename}")
         plt.close(fig)
-
 
 
 def plot_ridgeline(d_d_list, n_e_list, years=None, figsize=(12, 8),
