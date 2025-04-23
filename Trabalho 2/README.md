@@ -152,8 +152,51 @@ Essa abordagem é útil para analisar a evolução do comportamento dos dados ao
 
 A análise evolutiva da rede permitiu compreender os mecanismos de crescimento e consolidação que influenciam sua estrutura. Observou-se que, embora o número absoluto de conexões cresça, a densidade diminui devido à expansão desproporcional dos vértices. A formação de hubs e a consolidação dos padrões de conexão oferecem insights valiosos sobre a resiliência e a dinâmica interna da rede, possibilitando a elaboração de hipóteses para investigações futuras.
 
+---
 
 #### **2.2 REQUISITO 2**
+Nessa seção foi realizada uma análise visual de redes de colaboração científica do PPgEEC, dividida em quatro períodos de avaliação (2010–2012, 2013–2016, 2017–2020, 2021–2024). Para cada período, foram gerados grafos onde cada vértice representa um pesquisador e cada aresta uma colaboração (coautoria) ponderada por citações.
+
+---
+
+#### 2.2.1 Contextualização e Objetivos
+
+Analisar redes de colaboração científica é fundamental para entender a estrutura e a dinâmica de interação entre pesquisadores. No caso do PPgEEC, essa análise permite avaliar a evolução das colaborações e identificar os principais atores ao longo dos períodos de avaliação de 2010-2012, 2013-2016, 2017-2020, 2021-2024. Nesta proposta, cada rede terá vértices representando pesquisadores, com tamanho proporcional ao número de conexões. As cinco maiores conexões serão destacadas. As arestas serão coloridas de vermelho quando conectarem membros permanentes e de preto nos demais casos, com largura proporcional ao número de citações. Cada visualização será acompanhada de uma explicação abordando: o que foi feito, como foi feito, principais resultados, dificuldades enfrentadas e possíveis hipóteses para os padrões observados. O objetivo é oferecer uma leitura clara da evolução das colaborações e apoiar o planejamento estratégico do programa.
+
+---
+
+#### 2.2.2 Metodologia
+1 - Representação do Grau de Conectividade dos Autores
+Cada nó representa um autor.
+
+- O tamanho do vértice é proporcional ao número de conexões (vizinhos diretos), indicando seu grau de colaboração.
+
+- Os top 5 vértices com mais vizinhos foram destacados com maior tamanho e cor diferenciada (vermelho), permitindo fácil identificação dos pesquisadores mais conectados em cada período.
+
+2 - Identificação de Membros Permanentes do PPgEEC
+As arestas vermelhas indicam colaborações entre autores permanentes do programa (identificados pela propriedade 'is_permanent': True).
+
+- Arestas pretas representam colaborações com pelo menos um autor não permanente.
+
+- Esse critério permite analisar o nível de interação dentro do núcleo permanente do PPgEEC ao longo do tempo.
+
+3 - Intensidade de Colaboração (Citações)
+A largura das arestas foi determinada com base na quantidade de citações atribuídas à colaboração ('citation_num').
+
+-  A medida foi normalizada com função logarítmica para garantir legibilidade (evitando que poucas citações gerem arestas imperceptíveis e muitas citações dominem visualmente o grafo).
+
+- Essa dimensão adiciona uma camada quantitativa à análise, permitindo avaliar a força das conexões entre autores além da mera existência da coautoria.
+
+---
+
+![graph:2010-2012](IMGs/network_graph_2010-2012.png)
+
+![graph:2013-2016](IMGs/network_graph_2013-2016.png)
+
+![graph:2017-2020](IMGs/network_graph_2017-2020.png)
+
+![graph:2021-2024](IMGs/network_graph_2021-2024.png)
+
 
 #### **2.3 REQUISITO 3**
 

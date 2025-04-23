@@ -212,7 +212,7 @@ def plot_ridgeline(d_d_list, n_e_list, years=None, figsize=(12, 8),
     plt.savefig(pdf_filename, format='pdf', dpi=300, bbox_inches='tight')
     print(f"PDF salvo: {pdf_filename}")
 
-    plt.show()  # Adiciona esta linha para exibir o gráfico na aplicação
+    #plt.show()  # Adiciona esta linha para exibir o gráfico na aplicação
     plt.close(fig)
 
     return fig, ax
