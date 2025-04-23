@@ -17,9 +17,9 @@ DOCENTE: IVANOVITCH MEDEIROS DANTAS DA SILVA
 
 NATAL/RN 2025  
 
----
 
-### **1. PROBLEMÁTICA**
+
+## **1. PROBLEMÁTICA**
 
 A colaboração científica é reconhecida como motor essencial para o avanço do conhecimento, mas seus padrões e dinâmicas ao longo do tempo ainda carecem de investigação detalhada. No Programa de Pós‑Graduação em Engenharia Elétrica e Computação (PPgEEC), dispomos de dados de coautoria que vão de 2010 a 2025, organizados em redes anuais e em janelas temporais (triênios, quadrênios e o período completo). Surge então um conjunto de desafios:
 
@@ -35,9 +35,9 @@ A colaboração científica é reconhecida como motor essencial para o avanço d
 Para responder a essas questões, utilizaremos a biblioteca NetworkX em Python para computar métricas, gerar visualizações (curvas temporais, histogramas/densidades, ridgeline charts, grafos destacados) e conduzir uma interpretação crítica dos resultados, levantando hipóteses sobre os mecanismos de formação e evolução das colaborações no PPgEEC.
 
 
-### **2. DESENVOLVIMENTO**
+## **2. DESENVOLVIMENTO**
 
-#### **2.1 REQUISITO 1**
+### **2.1 REQUISITO 1**
 
 Esta seção documenta a análise evolutiva da rede de 2010 a 2025, utilizando métricas fundamentais que evidenciam a dinâmica estrutural e comportamental do grafo. A seguir, são apresentados os gráficos (imagens) gerados para intervalos temporais distintos, acompanhados das explicações e principais achados decorrentes da análise.
 
@@ -154,7 +154,7 @@ A análise evolutiva da rede permitiu compreender os mecanismos de crescimento e
 
 ---
 
-#### **2.2 REQUISITO 2**
+### **2.2 REQUISITO 2**
 Nessa seção foi realizada uma análise visual de redes de colaboração científica do PPgEEC, dividida em quatro períodos de avaliação (2010–2012, 2013–2016, 2017–2020, 2021–2024). Para cada período, foram gerados grafos onde cada vértice representa um pesquisador e cada aresta uma colaboração (coautoria) ponderada por citações.
 
 ---
@@ -198,9 +198,9 @@ A largura das arestas foi determinada com base na quantidade de citações atrib
 ![graph:2021-2024](IMGs/network_graph_2021-2024.png)
 
 
-#### **2.3 REQUISITO 3**
+### **2.3 REQUISITO 3**
 
 
-### **3. CONCLUSÃO**
+## **3. CONCLUSÃO**
 
 
