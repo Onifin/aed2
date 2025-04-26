@@ -190,11 +190,8 @@ A largura das arestas foi determinada com base na quantidade de citações atrib
 ---
 
 ![graph:2010-2012](IMGs/network_graph_2010-2012.png)
-
 ![graph:2013-2016](IMGs/network_graph_2013-2016.png)
-
 ![graph:2017-2020](IMGs/network_graph_2017-2020.png)
-
 ![graph:2021-2024](IMGs/network_graph_2021-2024.png)
 
 
