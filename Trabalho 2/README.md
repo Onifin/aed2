@@ -194,6 +194,15 @@ A largura das arestas foi determinada com base na quantidade de citações atrib
 ![graph:2017-2020](IMGs/network_graph_2017-2020.png)
 ![graph:2021-2024](IMGs/network_graph_2021-2024.png)
 
+Foi realizada uma análise das redes de colaboração científica do PPgEEC nos períodos de 2010–2012, 2013–2016, 2017–2020 e 2021–2024. Em cada rede, pesquisadores foram representados como vértices e coautorias como arestas, ponderadas pela quantidade de citações. O objetivo foi entender a evolução das colaborações, identificar os principais autores e apoiar o planejamento estratégico do programa.
+
+A metodologia envolveu a leitura de arquivos .gexf e a geração de grafos com algumas características específicas: o tamanho dos nós proporcional ao número de conexões, destaque para os cinco autores mais conectados, diferenciação de cor nas arestas entre membros permanentes (vermelho) e demais ligações (preto), e ajuste da espessura das arestas com base no número de citações, usando uma normalização logarítmica.
+
+Como principais achados, observou-se um aumento no número de autores e colaborações ao longo do tempo, a presença de pesquisadores centrais (hubs) nas redes, e um núcleo de colaboração consistente entre membros permanentes. Houve também uma diversificação maior nas colaborações nos períodos mais recentes.
+
+Entre as dificuldades enfrentadas, destacam-se a normalização das citações para manter a legibilidade dos grafos e o aumento do tempo de processamento devido ao crescimento das redes.
+
+As hipóteses levantadas apontam que a concentração de colaborações em torno de poucos autores se deve a dinâmicas naturais de formação de redes científicas, enquanto a maior dispersão observada recentemente pode indicar expansão das linhas de pesquisa e entrada de novos grupos no programa.
 
 ### **2.3 REQUISITO 3**
 
