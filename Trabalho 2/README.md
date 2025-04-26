@@ -190,9 +190,24 @@ A largura das arestas foi determinada com base na quantidade de citações atrib
 ---
 
 ![graph:2010-2012](IMGs/network_graph_2010-2012.png)
+*Explicação:*
+No início (2010–2012), a rede é pequena e muito coesa: um grupo reduzido de fundadores forma o núcleo de colaborações mais densas, com frequentes ligações entre membros permanentes e algumas arestas mais espessas indicando parcerias já bem citadas.
+
 ![graph:2013-2016](IMGs/network_graph_2013-2016.png)
+
+*Explicação:*
+Entre 2013 e 2016, a chegada de novos pesquisadores traz ramificações ao redor desse núcleo, criando “braços” temáticos. Ainda que os permanentes continuem no centro, cresce o número de conexões externas, sinalizando diversificação de linhas e maior integração com colaboradores eventuais.
+
 ![graph:2017-2020](IMGs/network_graph_2017-2020.png)
+
+*Explicação:*
+Em 2017–2020, a rede amadurece e se fragmenta em subcomunidades quase independentes, cada uma girando em torno de seus próprios hubs locais. Os cinco autores centrais agora funcionam como pontes entre grupos especializados, e as parcerias de alto impacto se espalham tanto entre permanentes quanto entre permanentes e eventuais.
+
 ![graph:2021-2024](IMGs/network_graph_2021-2024.png)
+
+*Explicação:*
+Por fim, no período 2021–2024, a complexidade atinge seu auge: além do núcleo original, surgem diversos hubs intermediários e uma vasta periferia de nós pouco conectados. A espessura excepcional de algumas arestas vermelhas revela projetos de grande visibilidade entre permanentes, mas a rede como um todo está muito mais descentralizada, refletindo a entrada de novos grupos independentes e a necessidade de reforçar a integração entre eles.
+
 
 Foi realizada uma análise das redes de colaboração científica do PPgEEC nos períodos de 2010–2012, 2013–2016, 2017–2020 e 2021–2024. Em cada rede, pesquisadores foram representados como vértices e coautorias como arestas, ponderadas pela quantidade de citações. O objetivo foi entender a evolução das colaborações, identificar os principais autores e apoiar o planejamento estratégico do programa.
 
@@ -203,6 +218,8 @@ Como principais achados, observou-se um aumento no número de autores e colabora
 Entre as dificuldades enfrentadas, destacam-se a normalização das citações para manter a legibilidade dos grafos e o aumento do tempo de processamento devido ao crescimento das redes.
 
 As hipóteses levantadas apontam que a concentração de colaborações em torno de poucos autores se deve a dinâmicas naturais de formação de redes científicas, enquanto a maior dispersão observada recentemente pode indicar expansão das linhas de pesquisa e entrada de novos grupos no programa.
+
+---
 
 ### **2.3 REQUISITO 3**
 
