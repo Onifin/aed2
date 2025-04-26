@@ -208,6 +208,9 @@ Em 2017–2020, a rede amadurece e se fragmenta em subcomunidades quase independ
 *Explicação:*
 Por fim, no período 2021–2024, a complexidade atinge seu auge: além do núcleo original, surgem diversos hubs intermediários e uma vasta periferia de nós pouco conectados. A espessura excepcional de algumas arestas vermelhas revela projetos de grande visibilidade entre permanentes, mas a rede como um todo está muito mais descentralizada, refletindo a entrada de novos grupos independentes e a necessidade de reforçar a integração entre eles.
 
+---
+
+#### 2.2.3 Conclusão
 
 Foi realizada uma análise das redes de colaboração científica do PPgEEC nos períodos de 2010–2012, 2013–2016, 2017–2020 e 2021–2024. Em cada rede, pesquisadores foram representados como vértices e coautorias como arestas, ponderadas pela quantidade de citações. O objetivo foi entender a evolução das colaborações, identificar os principais autores e apoiar o planejamento estratégico do programa.
 
