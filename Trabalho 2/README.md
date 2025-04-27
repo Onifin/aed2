@@ -57,10 +57,10 @@ O estudo buscou identificar tendências como o crescimento da rede, a diminuiç�
 #### **2.1.2 Metodologia e Desenvolvimento**
 
 1. **Coleta de Dados:**  
-   Foram extraídos snapshots da rede para cada ano do intervalo de 2010 a 2025.
+   Foram extraídoas partições da rede para cada ano do intervalo de 2010 a 2025.
 
 2. **Cálculo das Métricas:**  
-   Para cada snapshot foram calculadas as métricas descritas, possibilitando a avaliação do comportamento evolutivo da rede.
+   Para cada partição foram calculadas as métricas descritas, possibilitando a avaliação do comportamento evolutivo da rede.
 
 3. **Visualizações:**  
    Os resultados foram organizados graficamente em quatro blocos de imagens, correspondentes a intervalos temporais específicos, além de um painel consolidado com as métricas agregadas.

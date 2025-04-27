@@ -10,16 +10,17 @@ path = kagglehub.dataset_download("ian9090/co-autoria-ppgeec")
 print("PATH TO DATASET FILES:", path)
 
 n_d_list, n_n_list, n_e_list, a_d_list, d_d_list = compute_metrics(path)
-#plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list)
-#plot_degree_distribution_grouped(d_d_list)
+plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list)
+plot_degree_distribution_grouped(d_d_list)
 
 d_d_list = [dict(counter) for counter in d_d_list]
-'''plot_ridgeline(d_d_list, n_e_list, years=None, figsize=(12, 8),
+plot_ridgeline(d_d_list, n_e_list, years=None, figsize=(12, 8),
                    overlap=0, palette="viridis", alpha=1,
                    title="Distribuição de Frequências por Ano",
-                   xlabel="Valor", ylabel="Ano")'''
+                   xlabel="Valor", ylabel="Ano")
 
-#print_graphs(path)
+print_graphs(path)
+
 
 avaliacao_dir = os.path.join(path, "basedados", "avaliacao_geral")
 print(os.listdir(avaliacao_dir))
@@ -55,9 +56,9 @@ for professor in lista_de_professores_permanentes:
   print(len(list(graph.neighbors(professor))))
 
 
-'''colaboradores_firmino = list(graph.neighbors('6603603627'))
+colaboradores_firmino = list(graph.neighbors('6603603627'))
 for i in range(len(colaboradores_firmino)):
-  print(graph.nodes[colaboradores_firmino[i]])'''
+  print(graph.nodes[colaboradores_firmino[i]])
 
 ego_node = '6603603627'  # O nó central da rede ego
 visualizar_rede_ego(ego_node, graph, radius=1)
