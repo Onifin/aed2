@@ -5,7 +5,6 @@ from functions_plots import *
 from functions_task2 import *
 from functions_task3 import *
 
-# DOWNLOAD LATEST VERSION
 path = kagglehub.dataset_download("ian9090/co-autoria-ppgeec")
 print("PATH TO DATASET FILES:", path)
 
@@ -49,7 +48,7 @@ subgrafo = graph.subgraph(nos_com_mais_vizinhos_que_media)
 print("Densidade do grafo: ", nx.density(graph))
 print("Densidade do subgrafo: ", nx.density(subgrafo))
 
-#visualizar_grafos(graph, subgrafo, titulo_original="Grafo Original", titulo_subgrafo="Subgrafo")
+visualizar_grafos(graph, subgrafo, titulo_original="Grafo Original", titulo_subgrafo="Subgrafo")
 
 for professor in lista_de_professores_permanentes:
   print(graph.nodes[professor])
@@ -60,5 +59,5 @@ colaboradores_firmino = list(graph.neighbors('6603603627'))
 for i in range(len(colaboradores_firmino)):
   print(graph.nodes[colaboradores_firmino[i]])
 
-ego_node = '6603603627'  # O nó central da rede ego
+ego_node = '6603603627'  
 visualizar_rede_ego(ego_node, graph, radius=1)

@@ -33,7 +33,7 @@ def plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list, filename='network_metri
         ("Network Density", n_d_list)
     ]
 
-    # Configurações do gráfico
+
     fig, axs = plt.subplots(len(metrics), 1, figsize=(10, 15))
     #fig.suptitle('Network Metrics Evolution (2010–2025)', fontsize=16, y=1.02)
     fig.tight_layout(pad=4.0)
@@ -50,7 +50,6 @@ def plot_metrics(n_d_list, n_n_list, n_e_list, a_d_list, filename='network_metri
             ax.axvline(x=year, **line_style)
         ax.legend()
 
-    # Salva o gráfico
     plt.savefig(filename, bbox_inches='tight', dpi=300)
     print(f"Gráficos salvos como {filename}")
     plt.show()
@@ -64,7 +63,6 @@ def plot_degree_distribution_grouped(d_d_list):
     colors = ['red', 'green', 'yellow', 'blue', 'brown', 'cyan', 'pink', 'purple']
 
     for pdf_index in range(num_pdfs):
-        # Aqui usamos constrained_layout para que o matplotlib ajuste os espaçamentos
         fig, axes = plt.subplots(2, 2, figsize=(16, 10), constrained_layout=True)
         axes = axes.flatten()
 
@@ -91,7 +89,6 @@ def plot_degree_distribution_grouped(d_d_list):
                 label.set_rotation(90)
                 label.set_ha('center')
 
-        # Não é necessário chamar subplots_adjust ou tight_layout, o constrained_layout já cuida disso.
         plt.show()
         pdf_filename = f'degree_distribution_group_{pdf_index + 1}.pdf'
         plt.savefig(pdf_filename, format='pdf', dpi=300, bbox_inches='tight')
@@ -127,10 +124,9 @@ def plot_ridgeline(d_d_list, n_e_list, years=None, figsize=(12, 8),
     if len(d_d_list) != len(n_e_list) or len(d_d_list) != len(years):
         raise ValueError("Os comprimentos de d_d_list, n_e_list e years devem ser iguais")
 
-    # Converter dicionários em DataFrames para facilitar o processamento
     dfs = []
     for i, d in enumerate(d_d_list):
-        if d:  # Verificar se o dicionário não está vazio
+        if d: 
             df = pd.DataFrame(list(d.items()), columns=['valor', 'frequencia'])
             df['ano'] = years[i]
             df['media_arestas'] = n_e_list[i]
@@ -139,66 +135,50 @@ def plot_ridgeline(d_d_list, n_e_list, years=None, figsize=(12, 8),
     if not dfs:
         raise ValueError("Nenhum dado válido encontrado para plotar")
 
-    # Combinar todos os DataFrames
     data = pd.concat(dfs, ignore_index=True)
 
     # Encontrar o valor mínimo e máximo para todos os dados
     x_min = data['valor'].min()
     x_max = data['valor'].max()
 
-    # Criar uma figura
     fig, ax = plt.subplots(figsize=figsize, facecolor='white')
 
-    # Normalizar os valores de média de arestas para colormap
     norm = mcolors.Normalize(vmin=min(n_e_list), vmax=max(n_e_list))
     cmap = plt.get_cmap(palette)
 
-    # Plotar cada densidade
     for i, year in enumerate(years):
         year_data = data[data['ano'] == year]
 
         if not year_data.empty:
-            # Extrair dados do DataFrame
             x_values = year_data['valor'].values
             y_values = year_data['frequencia'].values
 
-            # Ordenar os valores
             idx = np.argsort(x_values)
             x_values = x_values[idx]
             y_values = y_values[idx]
 
-            # Adicionar pontos de início e fim para completar o polígono
             x = np.append(np.append([x_min], x_values), [x_max])
             y = np.append(np.append([0], y_values), [0])
 
-            # Normalizar a altura máxima
             y = y / y.max() if y.max() > 0 else y
 
-            # Posição vertical da curva
             offset = i * (1.0 - overlap)
 
-            # Criar pontos xy para o polígono
             xy = np.column_stack([x, offset + y])
 
-            # Cor baseada na média de arestas
             color = cmap(norm(n_e_list[i]))
 
-            # Adicionar polígono
             poly = plt.fill(xy[:, 0], xy[:, 1], alpha=alpha, color=color, edgecolor='k', linewidth=0.5)
 
-            # Adicionar linha horizontal para indicar a base de cada curva
             plt.axhline(y=offset, color='gray', linestyle='--', alpha=0.3)
 
-    # Configurar eixos e legendas
     ax.set_yticks([i * (1.0 - overlap) for i in range(len(years))])
     ax.set_yticklabels(years)
 
-    # Adicionar colorbar
     sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
     sm.set_array([])
     cbar = plt.colorbar(sm, ax=ax, label='Média de Arestas')
 
-    # Configurar títulos e limites
     plt.title(title, fontsize=14)
     plt.xlabel(xlabel, fontsize=12)
     plt.ylabel(ylabel, fontsize=12)
