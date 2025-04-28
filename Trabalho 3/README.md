@@ -15,7 +15,7 @@ O GPT-4 gerou inicialmente os dados no formato JSON, mas com pequenos erros de c
 
 Posteriormente, o JSON tratado foi utilizado para construir um grafo em Python com NetworkX e analisar a assortatividade por tipo de ingrediente.
 
-**Vídeo de apresentação (até 5 min):** [Link do vídeo de demonstração](https://youtu.be/seu_link_aqui)
+**Vídeo de apresentação:** [Link do vídeo de demonstração](https://youtu.be/G_yVe4tAJZg)
 
 ---
 
