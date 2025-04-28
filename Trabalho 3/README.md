@@ -1,7 +1,6 @@
-# Trabalho 02 – Análise de Assortatividade em Grafos de Ingredientes da Culinária Brasileira
+# Trabalho 03 – Análise de Assortatividade em Grafos de Ingredientes da Culinária Brasileira
 
 **Nome:** Ian Antonio Fonseca Araújo
-**Matrícula:** 00000000000
 **Curso:** Engenharia de Computação
 
 ---
