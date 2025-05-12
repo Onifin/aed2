@@ -26,7 +26,7 @@ O foco será comparar a performance de três algoritmos de menor caminho — a i
 
 O cenário escolhido para este projeto foi o de rotas de entrega realizadas por motoboys na cidade de Natal/RN. A simulação considera como ponto de partida a Avenida Prudente de Morais, uma das principais vias da cidade, em direção a três bairros distintos: Neópolis, Candelária e Capim Macio.
 
-Para cada um desses três destinos, foram testadas rotas utilizando três algoritmos distintos de menor caminho. O objetivo principal foi simular situações reais de entrega e verificar quais algoritmos conseguem gerar caminhos mais rápidos e eficientes, considerando o tempo de execução, a qualidade da rota e o impacto ambiental gerado pelo processamento computacional.
+Para cada um desses três destinos, foram testadas rotas utilizando três algoritmos de menor caminho. O objetivo principal foi simular situações reais de entrega e verificar quais algoritmos conseguem gerar caminhos mais rápidos e eficientes, considerando o tempo de execução, a qualidade da rota e o impacto ambiental gerado pelo processamento computacional.
 
 Para garantir uma comparação justa, cada algoritmo foi aplicado exatamente às mesmas três rotas (Prudente de Morais → Neópolis, Candelária e Capim Macio), totalizando nove simulações no conjunto do experimento. Dessa forma, foi possível analisar o comportamento dos algoritmos sob condições semelhantes.
 
