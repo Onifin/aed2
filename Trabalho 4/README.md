@@ -50,8 +50,7 @@ Fazendo um comparativo geral e relacionando imagem a imagem geradas por meio das
 Como era previsto, devido às diferenças nos níveis de complexidade computacional das implementações, seguindo a ordem crescente de eficiência Dijkstra convencional, com min-heap e via OSMnx é possível afirmar que os tempos de execução das versões com min-heap e com OSMnx tendem a ser significativamente inferiores ao da implementação convencional. Além disso, como ambas utilizam estruturas de dados otimizadas, como filas de prioridade (min-heaps), seus desempenhos em tempo de execução são bastante semelhantes, especialmente em grafos grandes e esparsos.
 
 <p align="center">
-<br>
-<img src="IMGs/GRAPH1.png" alt="Comparação de tempos de execução" width="600"/>
+  <img src="IMGs/GRAPH1.png" alt="Comparação de tempos de execução" width="600"/>
 </p>
 
 ### Pegada de Carbono (em kgCO2eq)  
