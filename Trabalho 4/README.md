@@ -30,7 +30,13 @@ Para cada um desses três destinos, foram testadas rotas utilizando três algori
 
 Para garantir uma comparação justa, cada algoritmo foi aplicado exatamente às mesmas três rotas (Prudente de Morais → Neópolis, Candelária e Capim Macio), totalizando nove simulações no conjunto do experimento. Dessa forma, foi possível analisar o comportamento dos algoritmos sob condições semelhantes.
 
-Adicionalmente, foi criada uma API que retorna o caminho atualizado em função de sua posição em determinado tempo. O código-fonte e instruções para utilização estão disponíveis no seguinte repositório: [link]
+Adicionalmente, foi criada uma API que retorna o caminho atualizado em função de sua posição em determinado tempo. O código-fonte e instruções para utilização estão disponíveis no seguinte repositório do [Git](https://github.com/Minnael/ESTRUTURAS-DE-DADOS-II/tree/master/PROJETO%2004).
+
+<p align="center">
+<br>
+<img src="IMGs/API.gif" alt="Pegada de carbono dos algoritmos" width="600"/>
+</p>
+
 
 ## 3. Resultados
 
@@ -67,7 +73,7 @@ Portanto, do ponto de vista da pegada de carbono, as implementações com min-he
 
 ### Tabela com resultados
 
-<div align="center">
+<p align="center">
 
 | Algoritmo          | Tempo de execução (s) | Emissões (kg CO₂)  |
 |--------------------|:---------------------:|:------------------:|
@@ -75,7 +81,7 @@ Portanto, do ponto de vista da pegada de carbono, as implementações com min-he
 | Dijkstra MinHeap   |       0.05003         |    0.00007487      |
 | OSMnx              |       0.78951         |    0.00007465      |
 
-</div>
+</p>
 
 ## 4. Conclusão
 
