@@ -34,7 +34,7 @@ Adicionalmente, foi criada uma API que retorna o caminho atualizado em função 
 
 <p align="center">
 <br>
-<img src="IMGs/API.gif" alt="Pegada de carbono dos algoritmos" width="400"/>
+<img src="IMGs/API.gif" alt="Pegada de carbono dos algoritmos" width="500"/>
 </p>
 
 
