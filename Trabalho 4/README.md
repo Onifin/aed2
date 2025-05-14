@@ -38,9 +38,11 @@ Adicionalmente, foi criada uma API que retorna o caminho atualizado em função 
 Fazendo um comparativo geral e relacionando imagem a imagem geradas por meio das três versões do algortimo dijsktra (tradicional, min-heap, implementação osmnx) foi possível chegar a conclusão que não houve nenhum tipo de mudança no cálculo e na distância de um ponto A ou um ponto B.  
 
 <div style="text-align: center;">
-<img src="IMGs/a.png" alt="Rota Dijkstra Tradicional" width="600"/>
-<img src="IMGs/b.png" alt="Rota Dijkstra com Heap" width="600"/>
-<img src="IMGs/c.png" alt="Rota OSMnx" width="600"/>
+  <img src="IMGs/a.png" alt="Rota Dijkstra Tradicional" width="600"/>
+  <br>
+  <img src="IMGs/b.png" alt="Rota Dijkstra com Heap" width="600"/>
+  <br>
+  <img src="IMGs/c.png" alt="Rota OSMnx" width="600"/>
 </div>
 
 ### Tempo de Execução dos Algoritmos  
