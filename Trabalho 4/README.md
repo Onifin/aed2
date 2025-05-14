@@ -87,4 +87,4 @@ A avaliação demonstrou que o algoritmo de Dijkstra, quando implementado com um
 
 ## Vídeo Explicativo
 
-[Link para o vídeo no YouTube ou Loom](https://www.youtube.com/seuvideoaqui)
+[Link para o vídeo no YouTube ou Loom](https://www.youtube.com/watch?v=_TbpSQ2pS9E)
