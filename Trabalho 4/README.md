@@ -44,9 +44,9 @@ Adicionalmente, foi criada uma API que retorna o caminho atualizado em função 
 Fazendo um comparativo geral e relacionando imagem a imagem geradas por meio das três versões do algortimo dijsktra (tradicional, min-heap, implementação osmnx) foi possível chegar a conclusão que não houve nenhum tipo de mudança no cálculo e na distância de um ponto A ou um ponto B.  
 
 <div style="display: flex; justify-content: center; gap: 20px;">
-  <img src="IMGs/a.png" alt="Rota para Neópolis" style="width: 300px; height: 300px; object-fit: contain;"/>
-  <img src="IMGs/b.png" alt="Rota para Candelária" style="width: 300px; height: 300px; object-fit: contain;"/>
-  <img src="IMGs/c.png" alt="Rota para Capim Macio" style="width: 300px; height: 300px; object-fit: contain;"/>
+  <img src="IMGs/a.png" alt="Rota para Neópolis" style="width: 400px; height: 400px; object-fit: contain;"/>
+  <img src="IMGs/b.png" alt="Rota para Candelária" style="width: 400px; height: 400px; object-fit: contain;"/>
+  <img src="IMGs/c.png" alt="Rota para Capim Macio" style="width: 400px; height: 400px; object-fit: contain;"/>
 </div>
 
 
