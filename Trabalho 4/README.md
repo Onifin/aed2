@@ -65,6 +65,15 @@ Portanto, do ponto de vista da pegada de carbono, as implementações com min-he
 <img src="IMGs/GRAPH2.png" alt="Pegada de carbono dos algoritmos" width="600"/>
 </p>
 
+### Tabela com resultados
+
+| Algoritmo        | Tempo de execução (s) | Emissões (kg CO₂) |
+| ---------------- | --------------------- | ----------------- |
+| Dijkstra         | 40.8345               | 0.00041395        |
+| Dijkstra MinHeap | 0.05003               | 0.00007487        |
+| OSMnx            | 0.78951               | 0.00007465        |
+
+
 ## 4. Conclusão
 
 A avaliação mostrou que o algoritmo Dijkstra com minheap proporciona uma boa relação entre desempenho computacional e qualidade da rota. 
