@@ -73,7 +73,7 @@ Portanto, do ponto de vista da pegada de carbono, as implementações com min-he
 
 ### Tabela com resultados
 
-<p align="center">
+<div align="center">
 
 | Algoritmo          | Tempo de execução (s) | Emissões (kg CO₂)  |
 |--------------------|:---------------------:|:------------------:|
@@ -81,7 +81,7 @@ Portanto, do ponto de vista da pegada de carbono, as implementações com min-he
 | Dijkstra MinHeap   |       0.05003         |    0.00007487      |
 | OSMnx              |       0.78951         |    0.00007465      |
 
-</p>
+</div>
 
 ## 4. Conclusão
 
