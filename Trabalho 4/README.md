@@ -5,14 +5,15 @@
 <p align="center"><strong>UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE</strong></p>
 
 <p align="center"> 
-DEPARTAMENTO DE ENGENHARIA DE COMPUTAÇÃO E AUTOMAÇÃO  
+DEPARTAMENTO DE ENGENHARIA DE COMPUTAÇÃO E AUTOMAÇÃO 
+<br> 
 DCA3702 - ALGORITMOS E ESTRUTURAS DE DADOS II  
 </p>
 
-<h2 align="center"><strong>PROJETO 04</strong></h2>
+<h2 align="center"><strong>PROJETO 04 - AVALIANDO ALGORITMOS PARA O CAMINHO MAIS CURTO EM GRAFOS URBANOS</strong></h2>
 
-**Discentes**: Ian Antonio Fonseca Araújo, Minnael Campelo de Oliveira  
-**Docente**: Ivanovitch Medeiros Dantas da Silva  
+**DISCENTES**: IAN ANTONIO FONSECA ARAÚJO, MINNAEL CAMPELO DE OLIVEIRA  
+**DOCENTE**: IVANOVITCH MEDEIROS DANTAS DA SILVA 
 
 **Natal/RN — 2025**
 
