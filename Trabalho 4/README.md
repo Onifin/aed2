@@ -9,7 +9,7 @@ DEPARTAMENTO DE ENGENHARIA DE COMPUTAÇÃO E AUTOMAÇÃO
 DCA3702 - ALGORITMOS E ESTRUTURAS DE DADOS II  
 </p>
 
-<h2 align="center"><strong>PROJETO 01</strong></h2>
+<h2 align="center"><strong>PROJETO 04</strong></h2>
 
 **Discentes**: Ian Antonio Fonseca Araújo, Minnael Campelo de Oliveira  
 **Docente**: Ivanovitch Medeiros Dantas da Silva  
