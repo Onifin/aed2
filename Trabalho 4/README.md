@@ -37,20 +37,18 @@ Adicionalmente, foi criada uma API que retorna o caminho atualizado em função 
 ### Mapas das rotas geradas
 Fazendo um comparativo geral e relacionando imagem a imagem geradas por meio das três versões do algortimo dijsktra (tradicional, min-heap, implementação osmnx) foi possível chegar a conclusão que não houve nenhum tipo de mudança no cálculo e na distância de um ponto A ou um ponto B.  
 
-<div style="text-align: center;">
+<p align="center">
   <img src="IMGs/a.png" alt="Rota Dijkstra Tradicional" width="600"/>
   <br>
   <img src="IMGs/b.png" alt="Rota Dijkstra com Heap" width="600"/>
   <br>
   <img src="IMGs/c.png" alt="Rota OSMnx" width="600"/>
-</div>
+</p>
 
 ### Tempo de Execução dos Algoritmos  
 Como era previsto, devido às diferenças nos níveis de complexidade computacional das implementações, seguindo a ordem crescente de eficiência Dijkstra convencional, com min-heap e via OSMnx é possível afirmar que os tempos de execução das versões com min-heap e com OSMnx tendem a ser significativamente inferiores ao da implementação convencional. Além disso, como ambas utilizam estruturas de dados otimizadas, como filas de prioridade (min-heaps), seus desempenhos em tempo de execução são bastante semelhantes, especialmente em grafos grandes e esparsos.
 
-<div style="text-align: center;">
 <img src="IMGs/GRAPH1.png" alt="Comparação de tempos de execução" width="600"/>
-</div>
 
 ### Pegada de Carbono (em kgCO2eq)  
 Do ponto de vista da eficiência energética e sustentabilidade computacional, as diferentes implementações do algoritmo de Dijkstra também apresentam variações em suas pegadas de carbono. A implementação convencional, por não utilizar estruturas otimizadas e exigir maior número de operações elementares, tende a consumir mais tempo de CPU e, consequentemente, mais energia elétrica, resultando em uma pegada de carbono mais elevada.
@@ -59,9 +57,7 @@ A versão com min-heap reduz significativamente o número de operações de busc
 
 Portanto, do ponto de vista da pegada de carbono, as implementações com min-heap e com OSMnx são mais sustentáveis, enquanto a versão convencional representa a alternativa menos eficiente do ponto de vista energético.
 
-<div style="text-align: center;">
 <img src="IMGs/GRAPH2.png" alt="Pegada de carbono dos algoritmos" width="600"/>
-</div>
 
 ## 4. Conclusão
 
