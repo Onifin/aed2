@@ -16,13 +16,13 @@ DCA3702 - ALGORITMOS E ESTRUTURAS DE DADOS II
 
 **Natal/RN — 2025**
 
-## 1. PROBLEMÁTICA
+## <strong>1. PROBLEMÁTICA</strong>
 
 Em centros urbanos, a eficiência na escolha de rotas para serviços de entrega é crucial para reduzir custos, economizar tempo e minimizar impactos ambientais. Este projeto visa avaliar o desempenho de diferentes algoritmos de menor caminho aplicados a um cenário realista de entrega por motoboys em Natal/RN.
 
 O foco será comparar a performance de três algoritmos de menor caminho — a implementação do OSMnx, Dijkstra tradicional e Dijkstra com min-heap — considerando critérios como tempo de execução, semelhança nas rotas e pegada de carbono.
 
-## 2. DESENVOLVIMENTO
+## <strong>2. DESENVOLVIMENTO</strong>
 
 O cenário escolhido para este projeto foi o de rotas de entrega realizadas por motoboys na cidade de Natal/RN. A simulação considera como ponto de partida a Avenida Prudente de Morais, uma das principais vias da cidade, em direção a três bairros distintos: Neópolis, Candelária e Capim Macio.
 
@@ -38,7 +38,7 @@ Adicionalmente, foi criada uma API que retorna o caminho atualizado em função 
 </p>
 
 
-## 3. RESULTADOS
+## <strong>3. RESULTADOS</strong>
 
 ### Mapas das rotas geradas
 Fazendo um comparativo geral e relacionando imagem a imagem geradas por meio das três versões do algortimo dijsktra (tradicional, min-heap, implementação osmnx) foi possível chegar a conclusão que não houve nenhum tipo de mudança no cálculo e na distância de um ponto A ou um ponto B.  
@@ -83,9 +83,9 @@ Portanto, do ponto de vista da pegada de carbono, as implementações com min-he
 
 </div>
 
-## 4. CONCLUSÃO
+## <strong>4. CONCLUSÃO</strong>
 
-A avaliação mostrou que o algoritmo Dijkstra com minheap proporciona uma boa relação entre desempenho computacional e qualidade da rota. 
+A avaliação demonstrou que o algoritmo de Dijkstra, quando implementado com uma fila de prioridade baseada em min-heap, oferece um equilíbrio eficiente entre complexidade computacional e qualidade das rotas geradas. Sua capacidade de encontrar o caminho de custo mínimo com precisão determinística o torna especialmente adequado para aplicações urbanas com redes viárias densas, como a da cidade de Natal. Além disso, a estrutura de min-heap garante uma complexidade de tempo otimizada — O((V + E) log V) — o que se traduz em desempenho robusto mesmo com grandes volumes de dados geoespaciais. Assim, Dijkstra com min-heap se destaca como uma solução confiável e escalável para sistemas de roteamento em tempo real.
 
 ## Vídeo Explicativo
 
