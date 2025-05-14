@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="IMGs/DCA.png" alt="Logo da UFRN" width=400/>
+  <img src="IMGs/DCA.png" alt="Logo da UFRN" width=300/>
 </p>
 
 <h3 align="center"><strong>UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE</strong></h3>
