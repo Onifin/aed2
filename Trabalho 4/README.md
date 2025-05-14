@@ -43,11 +43,12 @@ Adicionalmente, foi criada uma API que retorna o caminho atualizado em função 
 ### Mapas das rotas geradas
 Fazendo um comparativo geral e relacionando imagem a imagem geradas por meio das três versões do algortimo dijsktra (tradicional, min-heap, implementação osmnx) foi possível chegar a conclusão que não houve nenhum tipo de mudança no cálculo e na distância de um ponto A ou um ponto B.  
 
-<div style="display: flex; justify-content: center; gap: 5px;">
-  <img src="IMGs/a.png" alt="Rota Dijkstra Tradicional" width="300"/>
-  <img src="IMGs/b.png" alt="Rota Dijkstra com Heap" width="300"/>
-  <img src="IMGs/c.png" alt="Rota OSMnx" width="300"/>
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <img src="IMGs/a.png" alt="Rota para Neópolis" style="width: 300px; height: 300px; object-fit: contain;"/>
+  <img src="IMGs/b.png" alt="Rota para Candelária" style="width: 300px; height: 300px; object-fit: contain;"/>
+  <img src="IMGs/c.png" alt="Rota para Capim Macio" style="width: 300px; height: 300px; object-fit: contain;"/>
 </div>
+
 
 ### Tempo de Execução dos Algoritmos  
 Como era previsto, devido às diferenças nos níveis de complexidade computacional das implementações, seguindo a ordem crescente de eficiência Dijkstra convencional, com min-heap e via OSMnx é possível afirmar que os tempos de execução das versões com min-heap e com OSMnx tendem a ser significativamente inferiores ao da implementação convencional. Além disso, como ambas utilizam estruturas de dados otimizadas, como filas de prioridade (min-heaps), seus desempenhos em tempo de execução são bastante semelhantes, especialmente em grafos grandes e esparsos.
