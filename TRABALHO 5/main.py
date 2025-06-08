@@ -1,101 +1,92 @@
 import pandas as pd
 import osmnx as ox
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 
-import numpy as np
 from sklearn.cluster import KMeans
-from scipy.spatial.distance import euclidean
-from itertools import permutations
 from k_means_constrained import KMeansConstrained
 
+from clusters import create_clusters, plot_clusters  # FUNÇÕES PERSONALIZADAS PARA CLUSTERIZAÇÃO E PLOTAGEM
+
+
+
+# =================================
+# CONFIGURAÇÕES INICIAIS DO CÓDIGO
+# =================================
+
+# CONFIGURAÇÕES DO OSMNX PARA USAR CACHE E MOSTRAR LOGS NO CONSOLE
 ox.settings.use_cache = True
 ox.settings.log_console = True
 
-from clusters import *
+G = ox.graph_from_place("Natal, Brazil", network_type="drive") # CRIA O GRAFO DE VIAS DA CIDADE DE NATAL/RN 
+orig_coords = (-5.753265931760308, -35.26269411137159) # DEFINE PONTO DE ORIGEM
+
+# ENCONTRA O NÓ DO GRAFO MAIS PRÓXIMO DO PONTO DE ORIGEM
+orig_node = ox.distance.nearest_nodes(G, X=orig_coords[1], Y=orig_coords[0])
+
+df = pd.read_csv('./centroid_filtered.csv') # CARREGA OS DADOS DE CENTRÓIDES A PARTIR DE UM ARQUIVO CSV
+coords = df[['Lat', 'Lon']].to_numpy() # CONVERTE AS COLUNAS DE LATITUDE E LONGITUDE PARA UM ARRAY NUMÉRICO
 
 
 
-# Criação do grafo de Natal
-G = ox.graph_from_place("Natal, Brazil", network_type = "drive")
+# =============================================================
+# REALIZA A CLUSTERIZAÇÃO DOS PONTOS USANDO MÉTODOS DIFERENTES
+# =============================================================
 
-
-# Estabelecimento da origem no grafo
-orig_coords = (-5.753265931760308, -35.26269411137159) # Unidade de Vigilancia de Zoonoses Natal
-orig_node = ox.distance.nearest_nodes(G, X=orig_coords[1], Y=orig_coords[0]) #Encontrando o nó mais próximo a unidade
-
-
-# Substitua 'arquivo.csv' pelo caminho do seu arquivo
-df = pd.read_csv('./centroid_filtered.csv')
-# Mostrar as primeiras linhas do arquivo
-df.head()
-
-
-clusters_kmeans = create_clusters(df, 10, "k-means")
-clusters_kmeans_constrained = create_clusters(df, 10, "k-means-constrained")
-clusters_random = create_clusters(df, 10, "random")
-
-
-plot_clusters(G, clusters_kmeans, orig_coords, df)
-
-
-coords = np.array(df[['Lat', 'Lon']].values)
-
-# KMeans clustering
+# 1. KMEANS TRADICIONAL (SEM RESTRIÇÕES DE TAMANHO)
 kmeans = KMeans(n_clusters=10, random_state=0, n_init=10)
-labels = kmeans.fit_predict(coords)
+labels_kmeans = kmeans.fit_predict(coords)  # RETORNA O RÓTULO DE CLUSTER PARA CADA PONTO
 
-# Para cada cluster, vamos pegar os índices dos pontos
-clusters = [[] for _ in range(10)]
-for idx, label in enumerate(labels):
-    clusters[label].append(idx)
-
-
-
-from k_means_constrained import KMeansConstrained
-
-n_clusters = 10
-cluster_size = len(coords) // n_clusters
-
-kmeans = KMeansConstrained(
-    n_clusters=n_clusters,
+# 2. KMEANS COM RESTRIÇÕES DE TAMANHO MÍNIMO E MÁXIMO
+# MAIOR TAMANHO É 7 E O MENOR TAMANHO É 6 PARA A CONSTRAINED
+cluster_size = len(coords) // 10  # CALCULA O TAMANHO IDEAL DE CADA CLUSTER
+kmeans_constrained = KMeansConstrained(
+    n_clusters=10,
     size_min=cluster_size,
     size_max=cluster_size + 1,
     random_state=0
 )
+labels_constrained = kmeans_constrained.fit_predict(coords)  # CLUSTERIZA COM TAMANHOS BALANCEADOS
 
-labels = kmeans.fit_predict(coords)
-
-# Para cada cluster, vamos pegar os índices dos pontos
-clusters_norm = [[] for _ in range(10)]
-for idx, label in enumerate(labels):
-    clusters_norm[label].append(idx)
+# 3. CLUSTERIZAÇÃO ALEATÓRIA (VIA FUNÇÃO PERSONALIZADA)
+clusters_random = create_clusters(df, 10, "random")
 
 
 
-print(labels)
+# ==================================================================
+# FUNÇÃO AUXILIAR PARA ORGANIZAR ÍNDICES DOS PONTOS EM CADA CLUSTER
+# ==================================================================
+
+def get_clusters_from_labels(labels, n_clusters):
+    clusters = [[] for _ in range(n_clusters)]  # INICIALIZA LISTA DE CLUSTERS
+    for idx, label in enumerate(labels):        # ATRIBUI CADA PONTO AO SEU CLUSTER
+        clusters[label].append(idx)
+    return clusters
+
+# APLICA A FUNÇÃO PARA OBTER LISTAS DE ÍNDICES DOS PONTOS EM CADA CLUSTER
+clusters_kmeans = get_clusters_from_labels(labels_kmeans, 10)
+clusters_kmeans_constrained = get_clusters_from_labels(labels_constrained, 10)
 
 
-clusters_norm
+
+# ========================================================
+# VISUALIZA OS CLUSTERS NO MAPA USANDO OSMNX + MATPLOTLIB
+# ========================================================
+
+plot_clusters(G, clusters_kmeans, orig_coords, df)  # PLOTA SOMENTE OS CLUSTERS KMEANS
 
 
-import numpy as np
-from sklearn.cluster import KMeans
-from scipy.spatial.distance import cdist
-from scipy.spatial.distance import euclidean
-from itertools import permutations
 
-coords = np.array(df[['Lat', 'Lon']].values)
 
-# KMeans clustering
-kmeans = KMeans(n_clusters=10, random_state=0, n_init=10)
-labels = kmeans.fit_predict(coords)
 
-# Para cada cluster, vamos pegar os índices dos pontos
-clusters = [[] for _ in range(10)]
-for idx, label in enumerate(labels):
-    clusters[label].append(idx)
 
+
+
+
+
+
+
+
+
+'''
 # Opcional: ordenação dos índices em cada cluster para minimizar a distância
 # Para pequenos grupos, podemos usar força bruta
 def optimal_order(points_indices):
@@ -167,3 +158,4 @@ plt.title('Grupos no Grafo com OSMnx')
 plt.xlabel('Longitude')
 plt.ylabel('Latitude')
 plt.show()
+'''
