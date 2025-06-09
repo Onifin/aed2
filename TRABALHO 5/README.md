@@ -37,6 +37,34 @@ Com isso, buscamos uma solução prática, eficiente e aplicável a situações 
 
 ## <strong>2. DESENVOLVIMENTO</strong>
 
+O desenvolvimento da solução teve início com a obtenção do grafo de ruas da cidade de Natal/RN, utilizando a biblioteca OSMnx, que fornece representações de redes viárias com base em dados do OpenStreetMap. A partir desse grafo, foi identificado o nó mais próximo da estação central, definido pelas coordenadas geográficas (-5.75326, -35.26269).
+Em seguida, foi realizada a leitura de um conjunto de 65 pontos de coleta a partir de um arquivo CSV, contendo suas respectivas latitudes e longitudes. Esses pontos representam as residências ou locais que precisam ser visitados pelos colaboradores. Para organizar a distribuição dos pontos entre os 10 colaboradores, foi empregada a técnica de clusterização, permitindo dividir os pontos de coleta em grupos distintos. Três abordagens foram utilizadas:
+
+- K-Means Tradicional
+Foi aplicado o algoritmo K-Means, com o número de clusters definido como 10. Essa abordagem distribui os pontos com base em similaridade espacial, sem restrição quanto ao número de elementos por grupo.
+
+- K-Means Constrained
+Utilizou-se o algoritmo KMeansConstrained, que permite impor restrições de tamanho mínimo e máximo para os clusters. Cada grupo recebeu entre 6 e 7 pontos, o que garante uma distribuição mais uniforme entre os colaboradores.
+
+- Distribuição Aleatória
+Uma abordagem não supervisionada foi implementada como base comparativa, onde os pontos foram atribuídos aleatoriamente aos grupos. Essa estratégia serve de benchmark para as demais técnicas otimizadas.
+
+Cada cluster gerado representa a rota potencial de um colaborador. Para visualização, os grupos foram plotados sobre o grafo da cidade com a função plot_clusters(), destacando cada conjunto de pontos com uma cor diferente e indicando a estação central como ponto de partida comum. 
+
+<p align="center">
+  <img src="IMGs/IMG01.png" alt="Logo da UFRN" width=600/>
+</p>
+
+Sendo assim a implementação dos algoritmos de roteamento interno para cada cluster. A ideia é, para cada grupo de pontos:
+
+- Calcular a menor rota possível partindo e retornando à estação central;
+
+- Utilizar algoritmos de caminho mínimo: Dijkstra, Dijkstra com Min-Heap e A*;
+
+- Armazenar as métricas de tempo de execução, distância percorrida e estimativa de emissão de CO₂.
+
+Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garantindo que a otimização ocorra respeitando a malha urbana real da cidade. O código atual está estruturado de forma modular, com funções reutilizáveis para a criação de clusters e visualização, o que permitirá integração eficiente com as rotinas de roteamento.
+
 ## <strong>3. RESULTADOS</strong>
 
 ## <strong>4. CONCLUSÃO</strong>
