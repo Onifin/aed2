@@ -4,7 +4,8 @@ import osmnx as ox
 from sklearn.cluster import KMeans
 from k_means_constrained import KMeansConstrained
 
-from clusters import create_clusters, plot_clusters  # FUNÇÕES PERSONALIZADAS PARA CLUSTERIZAÇÃO E PLOTAGEM
+from clusters import *  # FUNÇÕES PERSONALIZADAS PARA CLUSTERIZAÇÃO E PLOTAGEM
+from functions import *
 
 
 
@@ -75,6 +76,27 @@ plot_clusters(G, clusters_kmeans, orig_coords, df)  # PLOTA SOMENTE OS CLUSTERS 
 
 
 
+
+nodes_kmeans = find_nodes(G, clusters_kmeans, df)
+nodes_kmeans_constrained = find_nodes(G, clusters_kmeans_constrained, df)
+nodes_random = find_nodes(G, clusters_random, df)
+
+routes_kmeans, route_paths_kmeans = find_all_routes(G, orig_node, nodes_kmeans, alg="a*")
+
+algorithms = ["a*", "dijkstra", "dijkstra_heap"]
+node_type = [nodes_kmeans, nodes_kmeans_constrained, nodes_random]
+clusters = [clusters_kmeans, clusters_kmeans_constrained, clusters_random]
+node_type_names = ["K-means", "K-means-constrained", "Aleatório"]
+
+algorithms = ["a*", "dijkstra", "dijkstra_heap"]
+node_type = [nodes_kmeans, nodes_kmeans_constrained, nodes_random]
+clusters = [clusters_kmeans, clusters_kmeans_constrained, clusters_random]
+node_type_names = ["K-means", "K-means-constrained", "Aleatório"]
+
+for alg in algorithms:
+  for nodes, cluster in zip(node_type, clusters):
+    routes, route_paths = find_all_routes(G, orig_node, nodes, alg=alg)
+    plot_clusters_and_routes(G, cluster, route_paths, orig_coords, df, f"Rotas e Clusters no Grafo {alg} + {node_type_names[clusters.index(cluster)]}")
 
 
 

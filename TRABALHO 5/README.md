@@ -37,6 +37,7 @@ Com isso, buscamos uma solução prática, eficiente e aplicável a situações 
 
 ## <strong>2. DESENVOLVIMENTO</strong>
 
+#### 2.1 MODELAGEM E ANÁLISE INICIAL
 O desenvolvimento da solução teve início com a obtenção do grafo de ruas da cidade de Natal/RN, utilizando a biblioteca OSMnx, que fornece representações de redes viárias com base em dados do OpenStreetMap. A partir desse grafo, foi identificado o nó mais próximo da estação central, definido pelas coordenadas geográficas (-5.75326, -35.26269).
 Em seguida, foi realizada a leitura de um conjunto de 65 pontos de coleta a partir de um arquivo CSV, contendo suas respectivas latitudes e longitudes. Esses pontos representam as residências ou locais que precisam ser visitados pelos colaboradores. Para organizar a distribuição dos pontos entre os 10 colaboradores, foi empregada a técnica de clusterização, permitindo dividir os pontos de coleta em grupos distintos. Três abordagens foram utilizadas:
 
@@ -52,22 +53,73 @@ Uma abordagem não supervisionada foi implementada como base comparativa, onde o
 Cada cluster gerado representa a rota potencial de um colaborador. Para visualização, os grupos foram plotados sobre o grafo da cidade com a função plot_clusters(), destacando cada conjunto de pontos com uma cor diferente e indicando a estação central como ponto de partida comum. 
 
 <p align="center">
-  <img src="IMGs/IMG03.png" alt="Logo da UFRN" width=600/>
+  <img src="IMGs/IMG01.png" alt="Logo da UFRN" width=500/>
 </p>
 
-Sendo assim a implementação dos algoritmos de roteamento interno para cada cluster. A ideia é, para cada grupo de pontos:
+Sendo assim, será apresentado o desenvolvimento relacionado as implementações dos algoritmos de roteamento interno para cada cluster. A ideia é, para cada grupo de pontos:
 
 - Calcular a menor rota possível partindo e retornando à estação central;
-
 - Utilizar algoritmos de caminho mínimo: Dijkstra, Dijkstra com Min-Heap e A*;
-
 - Armazenar as métricas de tempo de execução, distância percorrida e estimativa de emissão de CO₂.
 
 Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garantindo que a otimização ocorra respeitando a malha urbana real da cidade. O código atual está estruturado de forma modular, com funções reutilizáveis para a criação de clusters e visualização, o que permitirá integração eficiente com as rotinas de roteamento.
 
+
+#### 2.2 ROTAS E CLUSTERS NO GRAFO A*
+
+<p align="center">
+  <img src="IMGs/IMG02.png" alt="Logo da UFRN" width=500/>
+</p>
+
+<p align="center">
+  <img src="IMGs/IMG03.png" alt="Logo da UFRN" width=500/>
+</p>
+
+<p align="center">
+  <img src="IMGs/IMG04.png" alt="Logo da UFRN" width=500/>
+</p>
+
+
+#### 2.3 ROTAS E CLUSTERS NO DIJKSTRA 
+
+<p align="center">
+  <img src="IMGs/IMG05.png" alt="Logo da UFRN" width=500/>
+</p>
+
+<p align="center">
+  <img src="IMGs/IMG06.png" alt="Logo da UFRN" width=500/>
+</p>
+
+<p align="center">
+  <img src="IMGs/IMG07.png" alt="Logo da UFRN" width=500/>
+</p>
+
+#### 2.4 ROTAS E CLUSTERS NO DIJKSTRA HEAP
+
+<p align="center">
+  <img src="IMGs/IMG08.png" alt="Logo da UFRN" width=500/>
+</p>
+
+<p align="center">
+  <img src="IMGs/IMG09.png" alt="Logo da UFRN" width=500/>
+</p>
+
+<p align="center">
+  <img src="IMGs/IMG010.png" alt="Logo da UFRN" width=500/>
+</p>
+
+
 ## <strong>3. RESULTADOS</strong>
 
+
+<p align="center">
+  <img src="IMGs/IMG011.png" alt="Logo da UFRN" width=500/>
+</p>
+
 ## <strong>4. CONCLUSÃO</strong>
+O presente trabalho apresentou uma solução eficiente para o roteamento dos colaboradores do Centro de Controle de Zoonoses de Natal/RN, com base em 65 pontos de coleta distribuídos por toda a cidade. A estratégia adotada envolveu a clusterização dos pontos em 10 grupos, utilizando os métodos K-Means, K-Means Constrained e uma abordagem aleatória como base comparativa. A aplicação da clusterização com restrições demonstrou melhor equilíbrio na distribuição dos pontos entre os colaboradores. Em seguida, os algoritmos Dijkstra, Dijkstra com Min-Heap e A* foram utilizados para calcular rotas otimizadas dentro de cada cluster, sempre partindo e retornando à estação central, sobre o grafo viário real obtido com OSMnx. As métricas de distância, tempo de execução e estimativa de CO₂ permitiram comparar as abordagens, revelando que os métodos otimizados superam significativamente a distribuição aleatória em termos de eficiência operacional. Concluímos que a combinação de clusterização balanceada e algoritmos de caminho mínimo oferece uma solução prática, escalável e aplicável a diversos cenários de logística urbana.
+
+
 
 ## Vídeo Explicativo
 

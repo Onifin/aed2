@@ -1,5 +1,6 @@
 import osmnx as ox
 import numpy as np
+import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from sklearn.cluster import KMeans
@@ -66,3 +67,59 @@ def plot_clusters(G, clusters, orig_coords, df):
   plt.xlabel('Longitude')
   plt.ylabel('Latitude')
   plt.show()
+
+
+def plot_clusters_and_routes(G, clusters, routes, orig_coords, df, title='Rotas e Clusters no Grafo'):
+    # Extrair coordenadas (lat, lon) do dataframe
+    coords = df[['Lat', 'Lon']].values
+
+    # Cores distintas para até 10 clusters
+    base_colors = list(mcolors.TABLEAU_COLORS.values())
+    if len(clusters) > len(base_colors):
+        cmap = cm.get_cmap('tab20', len(clusters))
+        cluster_colors = [cmap(i) for i in range(len(clusters))]
+    else:
+        cluster_colors = base_colors[:len(clusters)]
+
+    # Cores para as rotas (opcionalmente iguais às dos clusters)
+    route_colors = cluster_colors
+
+    # Plota o grafo com rotas
+    fig, ax = ox.plot_graph_routes(
+        G,
+        routes,
+        route_colors=route_colors,
+        route_linewidth=3,
+        node_size=0,
+        show=False,
+        close=False,
+        figsize=(18, 18),
+        edge_color='white'
+    )
+
+    # Plota a origem
+    ax.scatter(orig_coords[1], orig_coords[0], c='white', label='Origem', s=60, alpha=0.9, edgecolors='k', zorder=3)
+
+    # Plota cada grupo de cluster
+    for i, grupo in enumerate(clusters):
+        lat_lon = coords[grupo]  # Índices dos pontos
+        lats = lat_lon[:, 1]
+        lons = lat_lon[:, 0]
+
+        ax.scatter(
+            lons,
+            lats,
+            c=[cluster_colors[i]],
+            label=f'Grupo {i+1}',
+            s=50,
+            alpha=0.9,
+            edgecolors='k',
+            zorder=3
+        )
+
+    # Configurações visuais
+    plt.legend()
+    plt.title(title)
+    plt.xlabel('Longitude')
+    plt.ylabel('Latitude')
+    plt.show()
