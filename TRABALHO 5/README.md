@@ -76,7 +76,7 @@ Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garanti
 </p>
 
 
-#### 2.4 ROTAS E CLUSTERS NO DIJKSTRA HEAP
+#### 2.3 ROTAS E CLUSTERS NO DIJKSTRA HEAP
 
 <p align="center">
   <img src="IMGs/dijkstra_heap_kmeans.png" width="330" height="430"/>
@@ -84,6 +84,14 @@ Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garanti
   <img src="IMGs/dijkstra_heap_random.png" width="330" height="430"/>
 </p>
 
+
+#### 2.4 ROTAS E CLUSTERS NO DIJKSTRA CONVENCIONAL
+
+<p align="center">
+  <img src="IMGs/dijkstra_kmeans.png" width="330" height="430"/>
+  <img src="IMGs/dijkstra_kmeans_constrained.png" width="335" height="430"/>
+  <img src="IMGs/dijkstra_random.png" width="335" height="430"/>
+</p>
 
 ## <strong>3. RESULTADOS</strong>
 
