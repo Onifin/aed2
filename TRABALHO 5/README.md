@@ -111,7 +111,7 @@ Em relação à distância total percorrida, os algoritmos baseados em Random s�
 </p>
 
 #### 3.3 ANÁLISE DA EMISSÃO DE CO2
-Quanto às emissões de CO₂, o padrão segue o observado no tempo: algoritmos mais lentos geram mais emissões. As combinações Dijkstra + K-means e Dijkstra + Random são as mais poluentes, com emissões de carbono consideráveis. Já as abordagens mais rápidas, como A* + K-means Constrained e Dijkstra Heap + K-means Constrained, têm impacto ambiental muito reduzido, com emissões próximas a 10⁻⁴ kg de CO₂, mostrando que otimização algorítmsica também traz benefícios sustentáveis.
+Quanto às emissões de CO₂, o padrão segue o observado no tempo: algoritmos mais lentos geram mais emissões. As combinações Dijkstra + K-means e Dijkstra + Random são as mais poluentes, com emissões de carbono consideráveis. Já as abordagens mais rápidas, como A* + K-means Constrained e Dijkstra Heap + K-means Constrained, têm impacto ambiental muito reduzido, com emissões próximas a 10⁻⁴ kg de CO₂, mostrando que otimização algorítmicas também traz benefícios sustentáveis.
 
 <p align="center">
   <img src="IMGs/emissoes.png" alt="Logo da UFRN" width=1000/>
