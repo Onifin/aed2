@@ -76,20 +76,6 @@ Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garanti
 </p>
 
 
-#### 2.3 ROTAS E CLUSTERS NO DIJKSTRA 
-
-<p align="center">
-  <img src="IMGs/IMG05.png" alt="Logo da UFRN" width=500/>
-</p>
-
-<p align="center">
-  <img src="IMGs/IMG06.png" alt="Logo da UFRN" width=500/>
-</p>
-
-<p align="center">
-  <img src="IMGs/IMG07.png" alt="Logo da UFRN" width=500/>
-</p>
-
 #### 2.4 ROTAS E CLUSTERS NO DIJKSTRA HEAP
 
 <p align="center">
