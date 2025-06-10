@@ -41,13 +41,13 @@ Com isso, buscamos uma solução prática, eficiente e aplicável a situações 
 O desenvolvimento da solução teve início com a obtenção do grafo de ruas da cidade de Natal/RN, utilizando a biblioteca OSMnx, que fornece representações de redes viárias com base em dados do OpenStreetMap. A partir desse grafo, foi identificado o nó mais próximo da estação central, definido pelas coordenadas geográficas (-5.75326, -35.26269).
 Em seguida, foi realizada a leitura de um conjunto de 65 pontos de coleta a partir de um arquivo CSV, contendo suas respectivas latitudes e longitudes. Esses pontos representam as residências ou locais que precisam ser visitados pelos colaboradores. Para organizar a distribuição dos pontos entre os 10 colaboradores, foi empregada a técnica de clusterização, permitindo dividir os pontos de coleta em grupos distintos. Três abordagens foram utilizadas:
 
-- K-Means Tradicional
+- K-Means Tradicional:
 Foi aplicado o algoritmo K-Means, com o número de clusters definido como 10. Essa abordagem distribui os pontos com base em similaridade espacial, sem restrição quanto ao número de elementos por grupo.
 
-- K-Means Constrained
+- K-Means Constrained:
 Utilizou-se o algoritmo KMeansConstrained, que permite impor restrições de tamanho mínimo e máximo para os clusters. Cada grupo recebeu entre 6 e 7 pontos, o que garante uma distribuição mais uniforme entre os colaboradores.
 
-- Distribuição Aleatória
+- Distribuição Aleatória:
 Uma abordagem não supervisionada foi implementada como base comparativa, onde os pontos foram atribuídos aleatoriamente aos grupos. Essa estratégia serve de benchmark para as demais técnicas otimizadas.
 
 Cada cluster gerado representa a rota potencial de um colaborador. Para visualização, os grupos foram plotados sobre o grafo da cidade com a função plot_clusters(), destacando cada conjunto de pontos com uma cor diferente e indicando a estação central como ponto de partida comum. 
