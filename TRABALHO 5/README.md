@@ -79,9 +79,9 @@ Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garanti
 #### 2.4 ROTAS E CLUSTERS NO DIJKSTRA HEAP
 
 <p align="center">
-  <img src="IMGs/astar_kmeans.png" width="335" height="450"/>
-  <img src="IMGs/astar_kmeans_constrained.png" width="335" height="450"/>
-  <img src="IMGs/astar_random.png" width="335" height="450"/>
+  <img src="IMGs/astar_kmeans.png" width="330" height="430"/>
+  <img src="IMGs/astar_kmeans_constrained.png" width="335" height="430"/>
+  <img src="IMGs/astar_random.png" width="330" height="430"/>
 </p>
 
 
