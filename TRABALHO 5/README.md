@@ -54,15 +54,15 @@ Cada cluster gerado representa a rota potencial de um colaborador. Para visualiz
 
 <div style="display: flex; justify-content: center; gap: 1px;">
 <p align="center">
-  <img src="IMGs/KMEANS.png" alt="Logo da UFRN" width=600 height=145/>
+  <img src="IMGs/KMEANS.png" alt="Logo da UFRN" width=600/>
 </p>
 
 <p align="center">
-  <img src="IMGs/KMEANSRESTRICAO.png" alt="Logo da UFRN" width=600 height=145/>
+  <img src="IMGs/KMEANSRESTRICAO.png" alt="Logo da UFRN" width=600/>
 </p>
 
 <p align="center">
-  <img src="IMGs/RANDOM.png" alt="Logo da UFRN" width=600 height=145/>
+  <img src="IMGs/RANDOM.png" alt="Logo da UFRN" width=600/>
 </p>
 </div>
 
