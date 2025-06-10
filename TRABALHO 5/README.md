@@ -131,5 +131,5 @@ O presente trabalho apresentou uma solução eficiente para o roteamento dos col
 
 ## Informações Complementares
 
-- Os prompts utilizados no projeto estão contidos na pasta [MD]()
-- Os arquivos jupyter notebook utilizados estão na pasta [JUPYTER]()
+- Os prompts utilizados no projeto estão contidos na pasta [MD](https://github.com/Onifin/aed2/tree/main/TRABALHO%205/MD)
+- Os arquivos jupyter notebook utilizados estão na pasta [JUPYTER](https://github.com/Onifin/aed2/tree/main/TRABALHO%205/JUPYTER)
