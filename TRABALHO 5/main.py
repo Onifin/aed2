@@ -43,19 +43,19 @@ nodes_random = find_nodes(G, clusters_random, df)
 
 # //////////////////  A*  /////////////////////
 path = nx.astar_path(G, orig_node, nodes_kmeans[0][0] , weight='length')
-points1, paths1, distances1, emissions1, times1 = find_all_goupe_routes(G, orig_node, nodes_kmeans, alg="a*")
-points2, paths2, distances2, emissions2, times2 = find_all_goupe_routes(G, orig_node, nodes_kmeans_constrained, alg="a*")
-points3, paths3, distances3, emissions3, times3 = find_all_goupe_routes(G, orig_node, nodes_random, alg="a*")
+points1, paths1, distances1, times1 = find_all_goupe_routes(G, orig_node, nodes_kmeans, alg="a*")
+points2, paths2, distances2, times2 = find_all_goupe_routes(G, orig_node, nodes_kmeans_constrained, alg="a*")
+points3, paths3, distances3, times3 = find_all_goupe_routes(G, orig_node, nodes_random, alg="a*")
 
 results = pd.DataFrame({
     'distance_astar_kmeans': distances1,
-    'emission_astar_kmeans': emissions1,
+    #'emission_astar_kmeans': emissions1,
     'time_astar_kmeans': times1,
     'distance_astar_kmeans_constrained': distances2,
-    'emission_astar_kmeans_constrained': emissions2,
+    #'emission_astar_kmeans_constrained': emissions2,
     'time_astar_kmeans_constrained': times2,
     'distance_astar_random': distances3,
-    'emission_astar_random': emissions3,
+    #'emission_astar_random': emissions3,
     'time_astar_random': times3
 })
 
@@ -70,19 +70,19 @@ plot_clusters_and_routes(G, clusters_kmeans, paths1, orig_coords, df, "ROTAS DO 
 
 
 # //////////////// DIJSKTRA MIN-HEAP //////////////////
-points1, paths1, distances1, emissions1, times1 = find_all_goupe_routes(G, orig_node, nodes_kmeans, alg="dijkstra_heap")
-points2, paths2, distances2, emissions2, times2 = find_all_goupe_routes(G, orig_node, nodes_kmeans_constrained, alg="dijkstra_heap")
-points3, paths3, distances3, emissions3, times3 = find_all_goupe_routes(G, orig_node, nodes_random, alg="dijkstra_heap")
+points1, paths1, distances1, times1 = find_all_goupe_routes(G, orig_node, nodes_kmeans, alg="dijkstra_heap")
+points2, paths2, distances2, times2 = find_all_goupe_routes(G, orig_node, nodes_kmeans_constrained, alg="dijkstra_heap")
+points3, paths3, distances3, times3 = find_all_goupe_routes(G, orig_node, nodes_random, alg="dijkstra_heap")
 
 results = pd.DataFrame({
     'distance_dijkstra_heap_kmeans': distances1,
-    'emission_dijkstra_heap_kmeans': emissions1,
+    #'emission_dijkstra_heap_kmeans': emissions1,
     'time_dijkstra_heap_kmeans': times1,
     'distance_dijkstra_heap_kmeans_constrained': distances2,
-    'emission_dijkstra_heap_kmeans_constrained': emissions2,
+    #'emission_dijkstra_heap_kmeans_constrained': emissions2,
     'time_dijkstra_heap_kmeans_constrained': times2,
     'distance_dijkstra_heap_random': distances3,
-    'emission_dijkstra_heap_random': emissions3,
+    #'emission_dijkstra_heap_random': emissions3,
     'time_dijkstra_heap_random': times3
 })
 
