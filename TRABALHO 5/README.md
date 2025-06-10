@@ -103,7 +103,7 @@ A análise dos tempos totais mostra que o algoritmo Dijkstra convencional é sig
 </p>
 
 #### 3.2 ANÁLISE DE DISTÂNCIA
-Em relação à distância total percorrida, os algoritmos baseados em Random são claramente os menos eficientes, superando os 500.000 km. Em contraste, todas as combinações que utilizam K-means ou K-means Constrained resultam em distâncias significativamente menores, próximas de 270.000–280.000 km. Isso indica que estratégias de agrupamento orientadas reduzem bastante o custo do percurso, melhorando a qualidade das rotas geradas.
+Em relação à distância total percorrida, os algoritmos baseados em Random são claramente os menos eficientes, superando os 500.000 m. Em contraste, todas as combinações que utilizam K-means ou K-means Constrained resultam em distâncias significativamente menores, próximas de 270.000–280.000 km. Isso indica que estratégias de agrupamento orientadas reduzem bastante o custo do percurso, melhorando a qualidade das rotas geradas.
 
 
 <p align="center">
