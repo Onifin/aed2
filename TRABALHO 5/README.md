@@ -128,3 +128,8 @@ O presente trabalho apresentou uma solução eficiente para o roteamento dos col
 ## Vídeo Explicativo
 
 [Link para o vídeo no YouTube ou Loom](https://www.loom.com/share/d6ec834f063f4d9d91a7b602b8e081ec?sid=f764c613-6d1f-4c41-a4a6-67ba525049a4)
+
+## Informações Complementares
+
+- Os prompts utilizados no projeto estão contidos na pasta [MD]()
+- Os arquivos jupyter notebook utilizados estão na pasta [JUPYTER]()
