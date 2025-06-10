@@ -70,15 +70,9 @@ Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garanti
 #### 2.2 ROTAS E CLUSTERS NO GRAFO A*
 
 <p align="center">
-  <img src="IMGs/IMG02.png" alt="Logo da UFRN" width=500/>
-</p>
-
-<p align="center">
-  <img src="IMGs/IMG03.png" alt="Logo da UFRN" width=500/>
-</p>
-
-<p align="center">
-  <img src="IMGs/IMG04.png" alt="Logo da UFRN" width=500/>
+  <img src="IMGs/astar_kmeans.png" width="330" height="430"/>
+  <img src="IMGs/astar_kmeans_constrained.png" width="330" height="430"/>
+  <img src="IMGs/astar_random.png" width="330" height="430"/>
 </p>
 
 
@@ -99,15 +93,9 @@ Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garanti
 #### 2.4 ROTAS E CLUSTERS NO DIJKSTRA HEAP
 
 <p align="center">
-  <img src="IMGs/IMG08.png" alt="Logo da UFRN" width=500/>
-</p>
-
-<p align="center">
-  <img src="IMGs/IMG09.png" alt="Logo da UFRN" width=500/>
-</p>
-
-<p align="center">
-  <img src="IMGs/IMG010.png" alt="Logo da UFRN" width=500/>
+  <img src="IMGs/dijkstra_heap_kmeans.png" width="330" height="430"/>
+  <img src="IMGs/dijkstra_heap_kmeans_constrained.png" width="330" height="430"/>
+  <img src="IMGs/dijkstra_heap_random.png" width="330" height="430"/>
 </p>
 
 
