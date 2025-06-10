@@ -125,7 +125,7 @@ def plot_clusters_and_routes(G, clusters, routes, orig_coords, df, title='Rotas 
 
     # Configurações visuais
     plt.legend()
-    plt.title(title, color='white', fontsize='13', fontweight='bold')
+    plt.title(title, color='white', fontsize='16', fontweight='bold')
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
 
