@@ -95,10 +95,30 @@ Esses algoritmos serão aplicados sobre o grafo G previamente carregado, garanti
 
 ## <strong>3. RESULTADOS</strong>
 
+#### 3.1 ANÁLISE DE TEMPO
+A análise dos tempos totais mostra que o algoritmo Dijkstra convencional é significativamente mais lento que as outras abordagens, especialmente quando combinado com K-means ou Random, atingindo tempos superiores a 10.000 segundos. Em contraste, A* e Dijkstra com heap têm desempenhos muito superiores, com tempos na casa de dezenas de segundos, principalmente ao serem combinados com K-means Constrained. Isso demonstra a importância de utilizar estruturas de dados eficientes (como heaps) e heurísticas (como no A*) para acelerar a execução.
 
 <p align="center">
-  <img src="IMGs/IMG011.png" alt="Logo da UFRN" width=500/>
+  <img src="IMGs/tempos.png" alt="Logo da UFRN" width=500/>
 </p>
+
+#### 3.2 ANÁLISE DE DISTÂNCIA
+Em relação à distância total percorrida, os algoritmos baseados em Random são claramente os menos eficientes, superando os 500.000 km. Em contraste, todas as combinações que utilizam K-means ou K-means Constrained resultam em distâncias significativamente menores, próximas de 270.000–280.000 km. Isso indica que estratégias de agrupamento orientadas reduzem bastante o custo do percurso, melhorando a qualidade das rotas geradas.
+
+
+<p align="center">
+  <img src="IMGs/dist.png" alt="Logo da UFRN" width=500/>
+</p>
+
+#### 3.3 ANÁLISE DA EMISSÃO DE CO2
+Quanto às emissões de CO₂, o padrão segue o observado no tempo: algoritmos mais lentos geram mais emissões. As combinações Dijkstra + K-means e Dijkstra + Random são as mais poluentes, com emissões de carbono consideráveis. Já as abordagens mais rápidas, como A* + K-means Constrained e Dijkstra Heap + K-means Constrained, têm impacto ambiental muito reduzido, com emissões próximas a 10⁻⁴ kg de CO₂, mostrando que otimização algorítmica também traz benefícios sustentáveis.
+
+<p align="center">
+  <img src="IMGs/emissoes.png" alt="Logo da UFRN" width=500/>
+</p>
+
+De forma geral, as melhores escolhas combinam algoritmos eficientes (como A* ou Dijkstra com heap) com métodos inteligentes de agrupamento (especialmente K-means Constrained). Essas combinações oferecem ótimo desempenho em tempo, baixa emissão de CO₂ e rotas mais curtas. Já abordagens aleatórias ou o uso de Dijkstra sem otimizações devem ser evitadas, pois comprometem seriamente a performance e eficiência do sistema.
+
 
 ## <strong>4. CONCLUSÃO</strong>
 O presente trabalho apresentou uma solução eficiente para o roteamento dos colaboradores do Centro de Controle de Zoonoses de Natal/RN, com base em 65 pontos de coleta distribuídos por toda a cidade. A estratégia adotada envolveu a clusterização dos pontos em 10 grupos, utilizando os métodos K-Means, K-Means Constrained e uma abordagem aleatória como base comparativa. A aplicação da clusterização com restrições demonstrou melhor equilíbrio na distribuição dos pontos entre os colaboradores. Em seguida, os algoritmos Dijkstra, Dijkstra com Min-Heap e A* foram utilizados para calcular rotas otimizadas dentro de cada cluster, sempre partindo e retornando à estação central, sobre o grafo viário real obtido com OSMnx. As métricas de distância, tempo de execução e estimativa de CO₂ permitiram comparar as abordagens, revelando que os métodos otimizados superam significativamente a distribuição aleatória em termos de eficiência operacional. Concluímos que a combinação de clusterização balanceada e algoritmos de caminho mínimo oferece uma solução prática, escalável e aplicável a diversos cenários de logística urbana.
