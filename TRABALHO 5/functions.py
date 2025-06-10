@@ -1,82 +1,6 @@
-import pandas as pd
-import osmnx as ox
-import networkx as nx
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-import matplotlib.cm as cm  
+from libs import *
+from algorithms import *
 
-import numpy as np
-from sklearn.cluster import KMeans
-from scipy.spatial.distance import cdist
-from scipy.spatial.distance import euclidean
-from itertools import permutations
-from k_means_constrained import KMeansConstrained
-import heapq
-
-import codecarbon as cc
-ox.settings.use_cache = True
-ox.settings.log_console = True
-
-
-def find_all_routes(G, orig_node, clusters_nodes, alg="a*"):
-  routes = []
-  routes_paths = []
-  for nodes in clusters_nodes:
-    route, route_path = find_route(G, orig_node, nodes, alg)
-    routes.append((route, route_path))
-    routes_paths.append(route_path)
-
-  return routes, routes_paths
-
-def find_route(G, orig_node, dest_nodes, alg="a*"):
-    route = []        # Ordem dos destinos visitados
-    route_path = []   # Caminho completo (nós percorridos)
-    remaining_nodes = dest_nodes.copy()  # Cópia para não modificar a lista original
-
-    while len(remaining_nodes) > 0:
-        dists = []
-        paths = []
-
-        for node in remaining_nodes:
-            if alg == "a*":
-                path = nx.astar_path(G, orig_node, node, weight='length')
-            elif alg == "dijkstra":
-                path = nx.dijkstra_path(G, orig_node, node, weight='length')
-            elif alg == "dijkstra_heap":
-                path = dijkstra_with_heap(G, orig_node, node)
-                if path is None:
-                    continue
-            else:
-                raise ValueError("Algoritmo não suportado: use 'a*', 'dijkstra' ou 'dijkstra_heap'.")
-
-            dist = calculate_path_distance(G, path)
-            dists.append(dist)
-            paths.append(path)
-
-        if not dists:
-            break  # Nenhum caminho válido encontrado
-
-        # Escolhe o destino mais próximo
-        min_index = dists.index(min(dists))
-        nearest_node = remaining_nodes[min_index]
-        best_path = paths[min_index]
-
-        # Adiciona à rota final
-        route.append(nearest_node)
-
-        # Adiciona o caminho ao route_path, evitando repetir o nó inicial
-        if not route_path:
-            route_path.extend(best_path)
-        else:
-            route_path.extend(best_path[1:])  # evita repetição do último nó do trecho anterior
-
-        # Atualiza o ponto de partida
-        orig_node = nearest_node
-
-        # Remove o destino já visitado da cópia
-        remaining_nodes.pop(min_index)
-
-    return route, route_path
 
 def find_nodes(G, clusters, df):
   coords = np.array(df[['Lat', 'Lon']].values)
@@ -95,39 +19,155 @@ def find_nodes(G, clusters, df):
 
 def calculate_path_distance(G, caminho):
     distancia_total = 0
+
     for u, v in zip(caminho[:-1], caminho[1:]):
         edge_data = G.get_edge_data(u, v)
 
-        if len(edge_data) > 1:
-            distancia_total += min(d['length'] for d in edge_data.values())
+        if edge_data is None:
+            continue  # Ou você pode fazer: return None ou lançar um erro
+
+        # Para grafos multigrafo, edge_data é um dicionário com 1 ou mais arestas
+        # Ex: {0: {'length': x}, 1: {'length': y}}
+        lengths = [d['length'] for d in edge_data.values() if 'length' in d]
+
+        if lengths:
+            distancia_total += min(lengths)  # Ou sum(lengths), dependendo da lógica
         else:
-            distancia_total += edge_data[0]['length']
+            continue  # Ou tratar com valor padrão
 
     return distancia_total
 
 
-def dijkstra_with_heap(G, source, target):
-    """Implementação manual do Dijkstra com min-heap."""
-    visited = set()
-    min_heap = [(0, source, [])]  # (distância acumulada, nó atual, caminho)
+def find_route_per_groupe(G, orig_node, dest_nodes, alg="a*"):
+    copy_orig_node = orig_node
+    route = []        # Ordem dos destinos visitados
+    route_path = []   # Caminho completo (nós percorridos)
+    remaining_nodes = dest_nodes.copy()  # Cópia para não modificar a lista original
+    total_distance = 0
+    tracker = EmissionsTracker() # Coletar pegada de carbono
+    tracker.start()
+    start = time.time()
 
-    while min_heap:
-        dist_u, u, path = heapq.heappop(min_heap)
+    while len(remaining_nodes) > 0:
+        dists = []
+        paths = []
 
-        if u in visited:
-            continue
-        visited.add(u)
-        path = path + [u]
+        for node in remaining_nodes:
 
-        if u == target:
-            return path
+            if alg == "a*":
+                path = nx.astar_path(G, orig_node, node, weight='length')
+            elif alg == "dijkstra":
+                path = dijkstra_traditional(G, orig_node, node)
+            elif alg == "dijkstra_heap":
+                path = dijkstra_with_heap(G, orig_node, node)
+                if path is None:
+                    print("Deu ruim")
+                    continue
+            else:
+                raise ValueError("Algoritmo não suportado: use 'a*', 'dijkstra' ou 'dijkstra_heap'.")
 
-        for v in G.successors(u):
-            if v not in visited:
-                for key in G[u][v]:
-                    length = G[u][v][key].get("length", 1)
-                    heapq.heappush(min_heap, (dist_u + length, v, path))
+            dist = calculate_path_distance(G, path)
+            dists.append(dist)
+            paths.append(path)
 
-    return None  # Caso não encontre caminho
+        if not dists:
+            break  # Nenhum caminho válido encontrado
+
+        # Escolhe o destino mais próximo
+        min_index = dists.index(min(dists))
+        nearest_node = remaining_nodes[min_index]
+        best_path = paths[min_index]
+
+        # Adiciona à rota final
+        route.append(nearest_node)
+        # Adiciona à distância ao total
+        total_distance += min(dists)
+
+        # Adiciona o caminho ao route_path, evitando repetir o nó inicial
+        if not route_path:
+            route_path.extend(best_path)
+        else:
+            route_path.extend(best_path[1:])  # evita repetição do último nó do trecho anterior
+
+        # Atualiza o ponto de partida
+        orig_node = nearest_node
+
+        # Remove o destino já visitado da cópia
+        remaining_nodes.pop(min_index)
+
+    #calcula o retorno ao nó inicial
+    if alg == "a*":
+        path = nx.astar_path(G, orig_node, copy_orig_node, weight='length')
+    elif alg == "dijkstra":
+        path = dijkstra_traditional(G, orig_node, copy_orig_node)
+    elif alg == "dijkstra_heap":
+        path = dijkstra_with_heap(G, orig_node, copy_orig_node)
+    else:
+        raise ValueError("Algoritmo não suportado: use 'a*', 'dijkstra' ou 'dijkstra_heap'.")
+
+    # Adiciona o caminho ao route_path, evitando repetir o nó inicial
+
+    route_path.extend(path[1:])  # evita repetição do último nó do trecho anterior
+    total_distance += calculate_path_distance(G, path)
+    emission = tracker.stop()
+    end = time.time()
+    tempo = end - start
+
+    return route, route_path, total_distance, emission, tempo
 
 
+def find_all_goupe_routes(G, orig_node, grupe_nodes, alg="a*"):
+
+  #Armazena a sequência de nós percorridos pelos grupos
+  routes = []
+  #Armazena todos os pontos do caminho percorridos pelos grupos
+  routes_paths = []
+  #Armazena a distância de cada grupo
+  distances = []
+  #Armazena as emissões de carbono
+  emissions = []
+  #Armazena tempo
+  tempos = []
+
+  for nodes in grupe_nodes:
+    route, route_path, total_distance, emission, tempo = find_route_per_groupe(G, orig_node, nodes, alg)
+    routes.append((route, route_path))
+    routes_paths.append(route_path)
+    distances.append(total_distance)
+    emissions.append(emission)
+    tempos.append(tempo)
+
+  return routes, routes_paths, distances, emissions, tempos
+
+
+def plot_points_in_graph(G, pontos):
+    """
+    Plota pontos (latitude, longitude) sobre o grafo G.
+    """
+    # Extrai as coordenadas dos nós do grafo
+    fig, ax = ox.plot_graph(G, show=False, close=False)
+
+    # Separa as listas de latitude e longitude
+    lats = [lat for lat, lon in pontos]
+    lons = [lon for lat, lon in pontos]
+
+    # Plota os pontos sobre o grafo
+    ax.scatter(lons, lats, c='red', s=50, marker='o', label='Pontos')
+
+    plt.legend()
+    plt.show()
+
+
+def return_nodes_position(G, nodes):
+    """
+    Retorna as posições geográficas (latitude e longitude) de uma lista de nós do grafo G.
+    """
+    positions = []
+    for node in nodes:
+        if node in G.nodes:
+            lat = G.nodes[node]['y']
+            lon = G.nodes[node]['x']
+            positions.append((lat, lon))
+        else:
+            print(f"Nó {node} não encontrado no grafo.")
+    return positions

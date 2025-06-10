@@ -52,9 +52,19 @@ Uma abordagem não supervisionada foi implementada como base comparativa, onde o
 
 Cada cluster gerado representa a rota potencial de um colaborador. Para visualização, os grupos foram plotados sobre o grafo da cidade com a função plot_clusters(), destacando cada conjunto de pontos com uma cor diferente e indicando a estação central como ponto de partida comum. 
 
+<div style="display: flex; justify-content: center; gap: 1px;">
 <p align="center">
-  <img src="IMGs/IMG01.png" alt="Logo da UFRN" width=500/>
+  <img src="IMGs/KMEANS.png" alt="Logo da UFRN" width=600 height=145/>
 </p>
+
+<p align="center">
+  <img src="IMGs/KMEANSRESTRICAO.png" alt="Logo da UFRN" width=600 height=145/>
+</p>
+
+<p align="center">
+  <img src="IMGs/RANDOM.png" alt="Logo da UFRN" width=600 height=145/>
+</p>
+</div>
 
 Sendo assim, será apresentado o desenvolvimento relacionado as implementações dos algoritmos de roteamento interno para cada cluster. A ideia é, para cada grupo de pontos:
 
