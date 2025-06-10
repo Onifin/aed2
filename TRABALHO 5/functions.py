@@ -44,8 +44,8 @@ def find_route_per_groupe(G, orig_node, dest_nodes, alg="a*"):
     route_path = []   # Caminho completo (nós percorridos)
     remaining_nodes = dest_nodes.copy()  # Cópia para não modificar a lista original
     total_distance = 0
-    #tracker = EmissionsTracker() # Coletar pegada de carbono
-    #tracker.start()
+    tracker = EmissionsTracker() # Coletar pegada de carbono
+    tracker.start()
     start = time.time()
 
     while len(remaining_nodes) > 0:
@@ -109,11 +109,11 @@ def find_route_per_groupe(G, orig_node, dest_nodes, alg="a*"):
 
     route_path.extend(path[1:])  # evita repetição do último nó do trecho anterior
     total_distance += calculate_path_distance(G, path)
-    #emission = tracker.stop()
+    emission = tracker.stop()
     end = time.time()
     tempo = end - start
 
-    return route, route_path, total_distance, tempo
+    return route, route_path, total_distance, emission, tempo
 
 
 def find_all_goupe_routes(G, orig_node, grupe_nodes, alg="a*"):
@@ -130,14 +130,14 @@ def find_all_goupe_routes(G, orig_node, grupe_nodes, alg="a*"):
   tempos = []
 
   for nodes in grupe_nodes:
-    route, route_path, total_distance, tempo = find_route_per_groupe(G, orig_node, nodes, alg)
+    route, route_path, total_distance, emission, tempo = find_route_per_groupe(G, orig_node, nodes, alg)
     routes.append((route, route_path))
     routes_paths.append(route_path)
     distances.append(total_distance)
-    #emissions.append(emission)
+    emissions.append(emission)
     tempos.append(tempo)
 
-  return routes, routes_paths, distances, tempos
+  return routes, routes_paths, distances, emissions, tempos
 
 
 def plot_points_in_graph(G, pontos):
