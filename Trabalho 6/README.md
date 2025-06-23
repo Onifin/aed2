@@ -27,18 +27,6 @@ Construir uma rota com o menor custo total possível (em metros), conectando os 
    cd Trabalho\ 6
    ``` 
 
-2. Instale os requisitos (recomenda-se o uso de ambiente virtual):
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Execute o script principal:
-
-   ```bash
-   python kruskal_cafeterias.py
-   ```
-
 O script:
 
 * Carrega o grafo viário de Natal-RN
