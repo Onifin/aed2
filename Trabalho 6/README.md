@@ -1,4 +1,3 @@
-````markdown
 # 🌐 Do Grão ao Grafo: Conectando Cafeterias com o Algoritmo de Kruskal
 
 Este projeto demonstra a aplicação do algoritmo de Kruskal para gerar uma **Árvore Geradora Mínima (MST)** conectando cafeterias na cidade de **Natal — RN, Brasil**, utilizando dados do **OpenStreetMap** com a biblioteca **OSMNX**.
