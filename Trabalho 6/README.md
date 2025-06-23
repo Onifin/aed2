@@ -25,7 +25,7 @@ Construir uma rota com o menor custo total possível (em metros), conectando os 
    ```bash
    git clone https://github.com/Onifin/aed2.git
    cd Trabalho\ 6
-````
+   ``` 
 
 2. Instale os requisitos (recomenda-se o uso de ambiente virtual):
 
