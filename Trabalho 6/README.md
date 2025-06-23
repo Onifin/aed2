@@ -53,11 +53,6 @@ O script:
 
 A saída informa o comprimento total da **"Rota da Cafeína"**, ou seja, a árvore geradora mínima entre as cafeterias mapeadas.
 
-> Exemplo:
-> `Comprimento total do MST entre os POIs selecionados: 26287 metros`
-
----
-
 ## 🔗 Referências
 
 * Artigo completo no Medium:
